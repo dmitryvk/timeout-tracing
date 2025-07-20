@@ -1,0 +1,131 @@
+2025-07-28T10:22:29.850368Z  INFO tracing_timeout::tests: got timeout
+1 traces:
+async trace #0:
+   0: tracing_timeout::tests::futures_unordered::do_unordered
+             at src/tests/futures_unordered.rs:34
+stack trace #0:
+   0: tracing_timeout::trace::Trace::capture
+             at ./src/trace.rs:16:26
+   1: tracing_timeout::waker::TracingTimeoutWaker::raw_clone
+             at ./src/waker.rs:53:21
+   2: <core::task::wake::Waker as core::clone::Clone>::clone
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/task/wake.rs:596:29
+   3: futures_core::task::__internal::atomic_waker::AtomicWaker::register
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-core-0.3.31/src/task/__internal/atomic_waker.rs:279:55
+   4: <futures_util::stream::futures_unordered::FuturesUnordered<Fut> as futures_core::stream::Stream>::poll_next
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/futures_unordered/mod.rs:409:9
+   5: futures_util::stream::stream::StreamExt::poll_next_unpin
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/stream/mod.rs:1638:9
+   6: <futures_util::stream::stream::next::Next<St> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/stream/next.rs:32:9
+   7: tracing_timeout::tests::futures_unordered::do_unordered::{{closure}}::{{closure}}
+             at ./src/tests/futures_unordered.rs:41:36
+   8: <tracing::instrument::Instrumented<T> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tracing-0.1.41/src/instrument.rs:321:9
+   9: tracing_timeout::tests::futures_unordered::do_unordered::{{closure}}
+             at ./src/tests/futures_unordered.rs:34:1
+  10: <tracing_timeout::TimeoutFuture<Fut> as core::future::future::Future>::poll
+             at ./src/lib.rs:56:23
+  11: tracing_timeout::tests::run_with_tracing::{{closure}}
+             at ./src/tests/mod.rs:49:46
+  12: tracing_timeout::tests::futures_unordered::with_futures_unordered::{{closure}}::{{closure}}
+             at ./src/tests/futures_unordered.rs:18:6
+  13: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  14: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  15: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:742:54
+  16: tokio::task::coop::with_budget
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/task/coop/mod.rs:167:5
+  17: tokio::task::coop::budget
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/task/coop/mod.rs:133:5
+  18: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:742:25
+  19: tokio::runtime::scheduler::current_thread::Context::enter
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:432:19
+  20: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:741:36
+  21: tokio::runtime::scheduler::current_thread::CoreGuard::enter::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:829:68
+  22: tokio::runtime::context::scoped::Scoped<T>::set
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context/scoped.rs:40:9
+  23: tokio::runtime::context::set_scheduler::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context.rs:176:26
+  24: std::thread::local::LocalKey<T>::try_with
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:315:12
+  25: std::thread::local::LocalKey<T>::with
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:279:15
+  26: tokio::runtime::context::set_scheduler
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context.rs:176:9
+  27: tokio::runtime::scheduler::current_thread::CoreGuard::enter
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:829:27
+  28: tokio::runtime::scheduler::current_thread::CoreGuard::block_on
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:729:19
+  29: tokio::runtime::scheduler::current_thread::CurrentThread::block_on::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:200:28
+  30: tokio::runtime::context::runtime::enter_runtime
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context/runtime.rs:65:16
+  31: tokio::runtime::scheduler::current_thread::CurrentThread::block_on
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:188:9
+  32: tokio::runtime::runtime::Runtime::block_on_inner
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/runtime.rs:356:47
+  33: tokio::runtime::runtime::Runtime::block_on
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/runtime.rs:330:13
+  34: tracing_timeout::tests::futures_unordered::with_futures_unordered::{{closure}}
+             at ./src/tests/futures_unordered.rs:23:5
+  35: core::ops::function::FnOnce::call_once
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/function.rs:250:5
+  36: serial_test::serial_code_lock::local_serial_core
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serial_test-3.2.0/src/serial_code_lock.rs:36:5
+  37: tracing_timeout::tests::futures_unordered::with_futures_unordered
+             at ./src/tests/futures_unordered.rs:11:1
+  38: tracing_timeout::tests::futures_unordered::with_futures_unordered::{{closure}}
+             at ./src/tests/futures_unordered.rs:11:10
+  39: core::ops::function::FnOnce::call_once
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/function.rs:250:5
+  40: core::ops::function::FnOnce::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/ops/function.rs:250:5
+  41: test::__rust_begin_short_backtrace
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:648:18
+  42: test::run_test_in_process::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:671:60
+  43: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/panic/unwind_safe.rs:272:9
+  44: std::panicking::try::do_call
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:589:40
+  45: std::panicking::try
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:552:19
+  46: std::panic::catch_unwind
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panic.rs:359:14
+  47: test::run_test_in_process
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:671:27
+  48: test::run_test::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:592:43
+  49: test::run_test::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:622:41
+  50: std::sys::backtrace::__rust_begin_short_backtrace
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/sys/backtrace.rs:152:18
+  51: std::thread::Builder::spawn_unchecked_::{{closure}}::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/thread/mod.rs:559:17
+  52: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/panic/unwind_safe.rs:272:9
+  53: std::panicking::try::do_call
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:589:40
+  54: std::panicking::try
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:552:19
+  55: std::panic::catch_unwind
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panic.rs:359:14
+  56: std::thread::Builder::spawn_unchecked_::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/thread/mod.rs:557:30
+  57: core::ops::function::FnOnce::call_once{{vtable.shim}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/ops/function.rs:250:5
+  58: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/alloc/src/boxed.rs:1966:9
+  59: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/alloc/src/boxed.rs:1966:9
+  60: std::sys::pal::unix::thread::Thread::new::thread_start
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/sys/pal/unix/thread.rs:97:17
+  61: <unknown>
+  62: <unknown>
+

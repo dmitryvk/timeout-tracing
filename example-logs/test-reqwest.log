@@ -1,0 +1,679 @@
+2025-07-28T10:22:30.280181Z  INFO tracing_timeout::tests: got timeout
+3 traces:
+async trace #0:
+   0: tracing_timeout::tests::reqwest::do_reqwest
+             at src/tests/reqwest.rs:40
+stack trace #0:
+   0: tracing_timeout::trace::Trace::capture
+             at ./src/trace.rs:16:26
+   1: tracing_timeout::waker::TracingTimeoutWaker::raw_clone
+             at ./src/waker.rs:53:21
+   2: <core::task::wake::Waker as core::clone::Clone>::clone
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/task/wake.rs:596:29
+   3: futures_channel::oneshot::Inner<T>::recv
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-channel-0.3.31/src/oneshot.rs:267:24
+   4: <futures_channel::oneshot::Receiver<T> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-channel-0.3.31/src/oneshot.rs:459:9
+   5: hyper_util::client::legacy::pool::Checkout<T,K>::poll_waiter
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/pool.rs:619:19
+   6: <hyper_util::client::legacy::pool::Checkout<T,K> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/pool.rs:694:38
+   7: futures_util::future::future::FutureExt::poll_unpin
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/future/mod.rs:558:9
+   8: <futures_util::future::select::Select<A,B> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/select.rs:114:35
+   9: hyper_util::client::legacy::client::Client<C,B>::one_connection_for::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:423:49
+  10: hyper_util::client::legacy::client::Client<C,B>::connection_for::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:374:61
+  11: hyper_util::client::legacy::client::Client<C,B>::try_send_request::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:282:14
+  12: hyper_util::client::legacy::client::Client<C,B>::send_request::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:250:70
+  13: <hyper_util::client::legacy::client::ResponseFuture as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:759:9
+  14: <reqwest::async_impl::client::HyperService as tower_service::Service<http::request::Request<reqwest::async_impl::body::Body>>>::call::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/async_impl/client.rs:118:47
+  15: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  16: <futures_util::future::either::Either<A,B> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/either.rs:108:32
+  17: <tower_http::follow_redirect::ResponseFuture<S,ReqBody,P> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tower-http-0.6.6/src/follow_redirect/mod.rs:259:30
+  18: <reqwest::async_impl::client::PendingRequest as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/async_impl/client.rs:3012:53
+  19: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  20: <reqwest::async_impl::client::Pending as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/async_impl/client.rs:2982:51
+  21: reqwest::get::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/lib.rs:324:48
+  22: tracing_timeout::tests::reqwest::do_reqwest::{{closure}}::{{closure}}
+             at ./src/tests/reqwest.rs:42:53
+  23: <tracing::instrument::Instrumented<T> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tracing-0.1.41/src/instrument.rs:321:9
+  24: tracing_timeout::tests::reqwest::do_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:40:1
+  25: <tracing_timeout::TimeoutFuture<Fut> as core::future::future::Future>::poll
+             at ./src/lib.rs:56:23
+  26: tracing_timeout::tests::run_with_tracing::{{closure}}
+             at ./src/tests/mod.rs:49:46
+  27: tracing_timeout::tests::reqwest::with_reqwest::{{closure}}::{{closure}}
+             at ./src/tests/reqwest.rs:11:88
+  28: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  29: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  30: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:742:54
+  31: tokio::task::coop::with_budget
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/task/coop/mod.rs:167:5
+  32: tokio::task::coop::budget
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/task/coop/mod.rs:133:5
+  33: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:742:25
+  34: tokio::runtime::scheduler::current_thread::Context::enter
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:432:19
+  35: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:741:36
+  36: tokio::runtime::scheduler::current_thread::CoreGuard::enter::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:829:68
+  37: tokio::runtime::context::scoped::Scoped<T>::set
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context/scoped.rs:40:9
+  38: tokio::runtime::context::set_scheduler::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context.rs:176:26
+  39: std::thread::local::LocalKey<T>::try_with
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:315:12
+  40: std::thread::local::LocalKey<T>::with
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:279:15
+  41: tokio::runtime::context::set_scheduler
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context.rs:176:9
+  42: tokio::runtime::scheduler::current_thread::CoreGuard::enter
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:829:27
+  43: tokio::runtime::scheduler::current_thread::CoreGuard::block_on
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:729:19
+  44: tokio::runtime::scheduler::current_thread::CurrentThread::block_on::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:200:28
+  45: tokio::runtime::context::runtime::enter_runtime
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context/runtime.rs:65:16
+  46: tokio::runtime::scheduler::current_thread::CurrentThread::block_on
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:188:9
+  47: tokio::runtime::runtime::Runtime::block_on_inner
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/runtime.rs:356:47
+  48: tokio::runtime::runtime::Runtime::block_on
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/runtime.rs:330:13
+  49: tracing_timeout::tests::reqwest::with_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:32:5
+  50: core::ops::function::FnOnce::call_once
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/function.rs:250:5
+  51: serial_test::serial_code_lock::local_serial_core
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serial_test-3.2.0/src/serial_code_lock.rs:36:5
+  52: tracing_timeout::tests::reqwest::with_reqwest
+             at ./src/tests/reqwest.rs:9:1
+  53: tracing_timeout::tests::reqwest::with_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:9:10
+  54: core::ops::function::FnOnce::call_once
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/function.rs:250:5
+  55: core::ops::function::FnOnce::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/ops/function.rs:250:5
+  56: test::__rust_begin_short_backtrace
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:648:18
+  57: test::run_test_in_process::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:671:60
+  58: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/panic/unwind_safe.rs:272:9
+  59: std::panicking::try::do_call
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:589:40
+  60: std::panicking::try
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:552:19
+  61: std::panic::catch_unwind
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panic.rs:359:14
+  62: test::run_test_in_process
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:671:27
+  63: test::run_test::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:592:43
+  64: test::run_test::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:622:41
+  65: std::sys::backtrace::__rust_begin_short_backtrace
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/sys/backtrace.rs:152:18
+  66: std::thread::Builder::spawn_unchecked_::{{closure}}::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/thread/mod.rs:559:17
+  67: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/panic/unwind_safe.rs:272:9
+  68: std::panicking::try::do_call
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:589:40
+  69: std::panicking::try
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:552:19
+  70: std::panic::catch_unwind
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panic.rs:359:14
+  71: std::thread::Builder::spawn_unchecked_::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/thread/mod.rs:557:30
+  72: core::ops::function::FnOnce::call_once{{vtable.shim}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/ops/function.rs:250:5
+  73: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/alloc/src/boxed.rs:1966:9
+  74: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/alloc/src/boxed.rs:1966:9
+  75: std::sys::pal::unix::thread::Thread::new::thread_start
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/sys/pal/unix/thread.rs:97:17
+  76: <unknown>
+  77: <unknown>
+
+async trace #1:
+   0: tracing_timeout::tests::reqwest::do_reqwest
+             at src/tests/reqwest.rs:40
+stack trace #1:
+   0: tracing_timeout::trace::Trace::capture
+             at ./src/trace.rs:16:26
+   1: tracing_timeout::waker::TracingTimeoutWaker::raw_clone
+             at ./src/waker.rs:53:21
+   2: <core::task::wake::Waker as core::clone::Clone>::clone
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/task/wake.rs:596:29
+   3: futures_core::task::__internal::atomic_waker::AtomicWaker::register
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-core-0.3.31/src/task/__internal/atomic_waker.rs:279:55
+   4: <futures_util::stream::futures_unordered::FuturesUnordered<Fut> as futures_core::stream::Stream>::poll_next
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/futures_unordered/mod.rs:409:9
+   5: futures_util::stream::stream::StreamExt::poll_next_unpin
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/stream/mod.rs:1638:9
+   6: <futures_util::stream::stream::next::Next<St> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/stream/next.rs:32:9
+   7: hickory_resolver::name_server::name_server_pool::parallel_conn_loop::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/name_server/name_server_pool.rs:323:50
+   8: hickory_resolver::name_server::name_server_pool::NameServerPool<P>::try_send::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/name_server/name_server_pool.rs:179:55
+   9: <hickory_resolver::name_server::name_server_pool::NameServerPool<P> as hickory_proto::xfer::dns_handle::DnsHandle>::send::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/name_server/name_server_pool.rs:214:87
+  10: <futures_util::stream::once::Once<Fut> as futures_core::stream::Stream>::poll_next
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/once.rs:46:33
+  11: <core::pin::Pin<P> as futures_core::stream::Stream>::poll_next
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-core-0.3.31/src/stream.rs:130:9
+  12: futures_util::stream::stream::StreamExt::poll_next_unpin
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/stream/mod.rs:1638:9
+  13: <hickory_proto::xfer::retry_dns_handle::RetrySendStream<H> as futures_core::stream::Stream>::poll_next
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-proto-0.24.4/src/xfer/retry_dns_handle.rs:103:19
+  14: <core::pin::Pin<P> as futures_core::stream::Stream>::poll_next
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-core-0.3.31/src/stream.rs:130:9
+  15: futures_util::stream::stream::StreamExt::poll_next_unpin
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/stream/mod.rs:1638:9
+  16: <hickory_proto::xfer::FirstAnswerFuture<S> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-proto-0.24.4/src/xfer/mod.rs:292:33
+  17: hickory_resolver::caching_client::CachingClient<C,E>::inner_lookup::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/caching_client.rs:187:14
+  18: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  19: hickory_resolver::lookup_ip::hosts_lookup::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/lookup_ip.rs:272:35
+  20: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  21: futures_util::future::future::FutureExt::poll_unpin
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/future/mod.rs:558:9
+  22: <futures_util::future::select::Select<A,B> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/select.rs:114:35
+  23: hickory_resolver::lookup_ip::ipv4_and_ipv6::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/lookup_ip.rs:325:6
+  24: hickory_resolver::lookup_ip::strategic_lookup::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/lookup_ip.rs:249:86
+  25: <hickory_resolver::lookup_ip::LookupIpFuture<C,E> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/lookup_ip.rs:148:25
+  26: hickory_resolver::async_resolver::AsyncResolver<P>::lookup_ip::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/async_resolver.rs:421:10
+  27: <reqwest::dns::hickory::HickoryDnsResolver as reqwest::dns::resolve::Resolve>::resolve::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/dns/hickory.rs:37:60
+  28: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  29: hyper_util::client::legacy::connect::dns::resolve::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/connect/dns.rs:295:28
+  30: hyper_util::client::legacy::connect::http::HttpConnector<R>::call_async::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/connect/http.rs:545:18
+  31: <hyper_util::client::legacy::connect::http::HttpConnector<R> as tower_service::Service<http::uri::Uri>>::call::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/connect/http.rs:475:62
+  32: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  33: <hyper_util::client::legacy::connect::http::HttpConnecting<R> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/connect/http.rs:642:9
+  34: <hyper_tls::client::HttpsConnector<T> as tower_service::Service<http::uri::Uri>>::call::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-tls-0.6.0/src/client.rs:150:34
+  35: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  36: <hyper_tls::client::HttpsConnecting<T> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-tls-0.6.0/src/client.rs:179:9
+  37: reqwest::connect::ConnectorService::connect_with_maybe_proxy::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/connect.rs:591:41
+  38: reqwest::connect::with_timeout::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/connect.rs:775:11
+  39: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  40: <hyper_util::service::oneshot::Oneshot<S,Req> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/service/oneshot.rs:55:38
+  41: <F as futures_core::future::TryFuture>::try_poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-core-0.3.31/src/future.rs:92:9
+  42: <futures_util::future::try_future::into_future::IntoFuture<Fut> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/try_future/into_future.rs:34:9
+  43: <futures_util::future::future::map::Map<Fut,F> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/future/map.rs:55:37
+  44: <futures_util::future::future::Map<Fut,F> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/lib.rs:86:13
+  45: <futures_util::future::try_future::MapErr<Fut,F> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/lib.rs:86:13
+  46: <F as futures_core::future::TryFuture>::try_poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-core-0.3.31/src/future.rs:92:9
+  47: <futures_util::future::try_future::into_future::IntoFuture<Fut> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/try_future/into_future.rs:34:9
+  48: <futures_util::future::future::map::Map<Fut,F> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/future/map.rs:55:37
+  49: <futures_util::future::future::Map<Fut,F> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/lib.rs:86:13
+  50: <futures_util::future::try_future::MapOk<Fut,F> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/lib.rs:86:13
+  51: <F as futures_core::future::TryFuture>::try_poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-core-0.3.31/src/future.rs:92:9
+  52: <futures_util::future::try_future::try_flatten::TryFlatten<Fut,<Fut as futures_core::future::TryFuture>::Ok> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/try_future/try_flatten.rs:49:61
+  53: <futures_util::future::try_future::TryFlatten<Fut1,Fut2> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/lib.rs:86:13
+  54: <futures_util::future::try_future::AndThen<Fut1,Fut2,F> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/lib.rs:86:13
+  55: <futures_util::future::either::Either<A,B> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/either.rs:108:32
+  56: <hyper_util::common::lazy::Lazy<F,R> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/common/lazy.rs:64:20
+  57: futures_util::future::future::FutureExt::poll_unpin
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/future/mod.rs:558:9
+  58: <futures_util::future::select::Select<A,B> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/select.rs:118:35
+  59: hyper_util::client::legacy::client::Client<C,B>::one_connection_for::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:423:49
+  60: hyper_util::client::legacy::client::Client<C,B>::connection_for::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:374:61
+  61: hyper_util::client::legacy::client::Client<C,B>::try_send_request::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:282:14
+  62: hyper_util::client::legacy::client::Client<C,B>::send_request::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:250:70
+  63: <hyper_util::client::legacy::client::ResponseFuture as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:759:9
+  64: <reqwest::async_impl::client::HyperService as tower_service::Service<http::request::Request<reqwest::async_impl::body::Body>>>::call::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/async_impl/client.rs:118:47
+  65: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  66: <futures_util::future::either::Either<A,B> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/either.rs:108:32
+  67: <tower_http::follow_redirect::ResponseFuture<S,ReqBody,P> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tower-http-0.6.6/src/follow_redirect/mod.rs:259:30
+  68: <reqwest::async_impl::client::PendingRequest as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/async_impl/client.rs:3012:53
+  69: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  70: <reqwest::async_impl::client::Pending as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/async_impl/client.rs:2982:51
+  71: reqwest::get::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/lib.rs:324:48
+  72: tracing_timeout::tests::reqwest::do_reqwest::{{closure}}::{{closure}}
+             at ./src/tests/reqwest.rs:42:53
+  73: <tracing::instrument::Instrumented<T> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tracing-0.1.41/src/instrument.rs:321:9
+  74: tracing_timeout::tests::reqwest::do_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:40:1
+  75: <tracing_timeout::TimeoutFuture<Fut> as core::future::future::Future>::poll
+             at ./src/lib.rs:56:23
+  76: tracing_timeout::tests::run_with_tracing::{{closure}}
+             at ./src/tests/mod.rs:49:46
+  77: tracing_timeout::tests::reqwest::with_reqwest::{{closure}}::{{closure}}
+             at ./src/tests/reqwest.rs:11:88
+  78: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  79: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  80: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:742:54
+  81: tokio::task::coop::with_budget
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/task/coop/mod.rs:167:5
+  82: tokio::task::coop::budget
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/task/coop/mod.rs:133:5
+  83: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:742:25
+  84: tokio::runtime::scheduler::current_thread::Context::enter
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:432:19
+  85: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:741:36
+  86: tokio::runtime::scheduler::current_thread::CoreGuard::enter::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:829:68
+  87: tokio::runtime::context::scoped::Scoped<T>::set
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context/scoped.rs:40:9
+  88: tokio::runtime::context::set_scheduler::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context.rs:176:26
+  89: std::thread::local::LocalKey<T>::try_with
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:315:12
+  90: std::thread::local::LocalKey<T>::with
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:279:15
+  91: tokio::runtime::context::set_scheduler
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context.rs:176:9
+  92: tokio::runtime::scheduler::current_thread::CoreGuard::enter
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:829:27
+  93: tokio::runtime::scheduler::current_thread::CoreGuard::block_on
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:729:19
+  94: tokio::runtime::scheduler::current_thread::CurrentThread::block_on::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:200:28
+  95: tokio::runtime::context::runtime::enter_runtime
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context/runtime.rs:65:16
+  96: tokio::runtime::scheduler::current_thread::CurrentThread::block_on
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:188:9
+  97: tokio::runtime::runtime::Runtime::block_on_inner
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/runtime.rs:356:47
+  98: tokio::runtime::runtime::Runtime::block_on
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/runtime.rs:330:13
+  99: tracing_timeout::tests::reqwest::with_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:32:5
+ 100: core::ops::function::FnOnce::call_once
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/function.rs:250:5
+ 101: serial_test::serial_code_lock::local_serial_core
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serial_test-3.2.0/src/serial_code_lock.rs:36:5
+ 102: tracing_timeout::tests::reqwest::with_reqwest
+             at ./src/tests/reqwest.rs:9:1
+ 103: tracing_timeout::tests::reqwest::with_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:9:10
+ 104: core::ops::function::FnOnce::call_once
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/function.rs:250:5
+ 105: core::ops::function::FnOnce::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/ops/function.rs:250:5
+ 106: test::__rust_begin_short_backtrace
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:648:18
+ 107: test::run_test_in_process::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:671:60
+ 108: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/panic/unwind_safe.rs:272:9
+ 109: std::panicking::try::do_call
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:589:40
+ 110: std::panicking::try
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:552:19
+ 111: std::panic::catch_unwind
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panic.rs:359:14
+ 112: test::run_test_in_process
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:671:27
+ 113: test::run_test::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:592:43
+ 114: test::run_test::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:622:41
+ 115: std::sys::backtrace::__rust_begin_short_backtrace
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/sys/backtrace.rs:152:18
+ 116: std::thread::Builder::spawn_unchecked_::{{closure}}::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/thread/mod.rs:559:17
+ 117: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/panic/unwind_safe.rs:272:9
+ 118: std::panicking::try::do_call
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:589:40
+ 119: std::panicking::try
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:552:19
+ 120: std::panic::catch_unwind
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panic.rs:359:14
+ 121: std::thread::Builder::spawn_unchecked_::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/thread/mod.rs:557:30
+ 122: core::ops::function::FnOnce::call_once{{vtable.shim}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/ops/function.rs:250:5
+ 123: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/alloc/src/boxed.rs:1966:9
+ 124: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/alloc/src/boxed.rs:1966:9
+ 125: std::sys::pal::unix::thread::Thread::new::thread_start
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/sys/pal/unix/thread.rs:97:17
+ 126: <unknown>
+ 127: <unknown>
+
+async trace #2:
+   0: tracing_timeout::tests::reqwest::do_reqwest
+             at src/tests/reqwest.rs:40
+stack trace #2:
+   0: tracing_timeout::trace::Trace::capture
+             at ./src/trace.rs:16:26
+   1: tracing_timeout::waker::TracingTimeoutWaker::raw_clone
+             at ./src/waker.rs:53:21
+   2: <core::task::wake::Waker as core::clone::Clone>::clone
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/task/wake.rs:596:29
+   3: futures_core::task::__internal::atomic_waker::AtomicWaker::register
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-core-0.3.31/src/task/__internal/atomic_waker.rs:279:55
+   4: <futures_util::stream::futures_unordered::FuturesUnordered<Fut> as futures_core::stream::Stream>::poll_next
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/futures_unordered/mod.rs:409:9
+   5: futures_util::stream::stream::StreamExt::poll_next_unpin
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/stream/mod.rs:1638:9
+   6: <futures_util::stream::stream::next::Next<St> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/stream/next.rs:32:9
+   7: hickory_resolver::name_server::name_server_pool::parallel_conn_loop::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/name_server/name_server_pool.rs:323:50
+   8: hickory_resolver::name_server::name_server_pool::NameServerPool<P>::try_send::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/name_server/name_server_pool.rs:179:55
+   9: <hickory_resolver::name_server::name_server_pool::NameServerPool<P> as hickory_proto::xfer::dns_handle::DnsHandle>::send::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/name_server/name_server_pool.rs:214:87
+  10: <futures_util::stream::once::Once<Fut> as futures_core::stream::Stream>::poll_next
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/once.rs:46:33
+  11: <core::pin::Pin<P> as futures_core::stream::Stream>::poll_next
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-core-0.3.31/src/stream.rs:130:9
+  12: futures_util::stream::stream::StreamExt::poll_next_unpin
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/stream/mod.rs:1638:9
+  13: <hickory_proto::xfer::retry_dns_handle::RetrySendStream<H> as futures_core::stream::Stream>::poll_next
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-proto-0.24.4/src/xfer/retry_dns_handle.rs:103:19
+  14: <core::pin::Pin<P> as futures_core::stream::Stream>::poll_next
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-core-0.3.31/src/stream.rs:130:9
+  15: futures_util::stream::stream::StreamExt::poll_next_unpin
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/stream/stream/mod.rs:1638:9
+  16: <hickory_proto::xfer::FirstAnswerFuture<S> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-proto-0.24.4/src/xfer/mod.rs:292:33
+  17: hickory_resolver::caching_client::CachingClient<C,E>::inner_lookup::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/caching_client.rs:187:14
+  18: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  19: hickory_resolver::lookup_ip::hosts_lookup::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/lookup_ip.rs:272:35
+  20: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  21: futures_util::future::future::FutureExt::poll_unpin
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/future/mod.rs:558:9
+  22: <futures_util::future::select::Select<A,B> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/select.rs:118:35
+  23: hickory_resolver::lookup_ip::ipv4_and_ipv6::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/lookup_ip.rs:325:6
+  24: hickory_resolver::lookup_ip::strategic_lookup::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/lookup_ip.rs:249:86
+  25: <hickory_resolver::lookup_ip::LookupIpFuture<C,E> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/lookup_ip.rs:148:25
+  26: hickory_resolver::async_resolver::AsyncResolver<P>::lookup_ip::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hickory-resolver-0.24.4/src/async_resolver.rs:421:10
+  27: <reqwest::dns::hickory::HickoryDnsResolver as reqwest::dns::resolve::Resolve>::resolve::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/dns/hickory.rs:37:60
+  28: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  29: hyper_util::client::legacy::connect::dns::resolve::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/connect/dns.rs:295:28
+  30: hyper_util::client::legacy::connect::http::HttpConnector<R>::call_async::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/connect/http.rs:545:18
+  31: <hyper_util::client::legacy::connect::http::HttpConnector<R> as tower_service::Service<http::uri::Uri>>::call::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/connect/http.rs:475:62
+  32: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  33: <hyper_util::client::legacy::connect::http::HttpConnecting<R> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/connect/http.rs:642:9
+  34: <hyper_tls::client::HttpsConnector<T> as tower_service::Service<http::uri::Uri>>::call::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-tls-0.6.0/src/client.rs:150:34
+  35: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  36: <hyper_tls::client::HttpsConnecting<T> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-tls-0.6.0/src/client.rs:179:9
+  37: reqwest::connect::ConnectorService::connect_with_maybe_proxy::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/connect.rs:591:41
+  38: reqwest::connect::with_timeout::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/connect.rs:775:11
+  39: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  40: <hyper_util::service::oneshot::Oneshot<S,Req> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/service/oneshot.rs:55:38
+  41: <F as futures_core::future::TryFuture>::try_poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-core-0.3.31/src/future.rs:92:9
+  42: <futures_util::future::try_future::into_future::IntoFuture<Fut> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/try_future/into_future.rs:34:9
+  43: <futures_util::future::future::map::Map<Fut,F> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/future/map.rs:55:37
+  44: <futures_util::future::future::Map<Fut,F> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/lib.rs:86:13
+  45: <futures_util::future::try_future::MapErr<Fut,F> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/lib.rs:86:13
+  46: <F as futures_core::future::TryFuture>::try_poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-core-0.3.31/src/future.rs:92:9
+  47: <futures_util::future::try_future::into_future::IntoFuture<Fut> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/try_future/into_future.rs:34:9
+  48: <futures_util::future::future::map::Map<Fut,F> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/future/map.rs:55:37
+  49: <futures_util::future::future::Map<Fut,F> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/lib.rs:86:13
+  50: <futures_util::future::try_future::MapOk<Fut,F> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/lib.rs:86:13
+  51: <F as futures_core::future::TryFuture>::try_poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-core-0.3.31/src/future.rs:92:9
+  52: <futures_util::future::try_future::try_flatten::TryFlatten<Fut,<Fut as futures_core::future::TryFuture>::Ok> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/try_future/try_flatten.rs:49:61
+  53: <futures_util::future::try_future::TryFlatten<Fut1,Fut2> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/lib.rs:86:13
+  54: <futures_util::future::try_future::AndThen<Fut1,Fut2,F> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/lib.rs:86:13
+  55: <futures_util::future::either::Either<A,B> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/either.rs:108:32
+  56: <hyper_util::common::lazy::Lazy<F,R> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/common/lazy.rs:64:20
+  57: futures_util::future::future::FutureExt::poll_unpin
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/future/mod.rs:558:9
+  58: <futures_util::future::select::Select<A,B> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/select.rs:118:35
+  59: hyper_util::client::legacy::client::Client<C,B>::one_connection_for::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:423:49
+  60: hyper_util::client::legacy::client::Client<C,B>::connection_for::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:374:61
+  61: hyper_util::client::legacy::client::Client<C,B>::try_send_request::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:282:14
+  62: hyper_util::client::legacy::client::Client<C,B>::send_request::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:250:70
+  63: <hyper_util::client::legacy::client::ResponseFuture as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hyper-util-0.1.15/src/client/legacy/client.rs:759:9
+  64: <reqwest::async_impl::client::HyperService as tower_service::Service<http::request::Request<reqwest::async_impl::body::Body>>>::call::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/async_impl/client.rs:118:47
+  65: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  66: <futures_util::future::either::Either<A,B> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.31/src/future/either.rs:108:32
+  67: <tower_http::follow_redirect::ResponseFuture<S,ReqBody,P> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tower-http-0.6.6/src/follow_redirect/mod.rs:259:30
+  68: <reqwest::async_impl::client::PendingRequest as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/async_impl/client.rs:3012:53
+  69: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  70: <reqwest::async_impl::client::Pending as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/async_impl/client.rs:2982:51
+  71: reqwest::get::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/lib.rs:324:48
+  72: tracing_timeout::tests::reqwest::do_reqwest::{{closure}}::{{closure}}
+             at ./src/tests/reqwest.rs:42:53
+  73: <tracing::instrument::Instrumented<T> as core::future::future::Future>::poll
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tracing-0.1.41/src/instrument.rs:321:9
+  74: tracing_timeout::tests::reqwest::do_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:40:1
+  75: <tracing_timeout::TimeoutFuture<Fut> as core::future::future::Future>::poll
+             at ./src/lib.rs:56:23
+  76: tracing_timeout::tests::run_with_tracing::{{closure}}
+             at ./src/tests/mod.rs:49:46
+  77: tracing_timeout::tests::reqwest::with_reqwest::{{closure}}::{{closure}}
+             at ./src/tests/reqwest.rs:11:88
+  78: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  79: <core::pin::Pin<P> as core::future::future::Future>::poll
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:124:9
+  80: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:742:54
+  81: tokio::task::coop::with_budget
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/task/coop/mod.rs:167:5
+  82: tokio::task::coop::budget
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/task/coop/mod.rs:133:5
+  83: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:742:25
+  84: tokio::runtime::scheduler::current_thread::Context::enter
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:432:19
+  85: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:741:36
+  86: tokio::runtime::scheduler::current_thread::CoreGuard::enter::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:829:68
+  87: tokio::runtime::context::scoped::Scoped<T>::set
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context/scoped.rs:40:9
+  88: tokio::runtime::context::set_scheduler::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context.rs:176:26
+  89: std::thread::local::LocalKey<T>::try_with
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:315:12
+  90: std::thread::local::LocalKey<T>::with
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:279:15
+  91: tokio::runtime::context::set_scheduler
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context.rs:176:9
+  92: tokio::runtime::scheduler::current_thread::CoreGuard::enter
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:829:27
+  93: tokio::runtime::scheduler::current_thread::CoreGuard::block_on
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:729:19
+  94: tokio::runtime::scheduler::current_thread::CurrentThread::block_on::{{closure}}
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:200:28
+  95: tokio::runtime::context::runtime::enter_runtime
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/context/runtime.rs:65:16
+  96: tokio::runtime::scheduler::current_thread::CurrentThread::block_on
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/scheduler/current_thread/mod.rs:188:9
+  97: tokio::runtime::runtime::Runtime::block_on_inner
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/runtime.rs:356:47
+  98: tokio::runtime::runtime::Runtime::block_on
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.46.1/src/runtime/runtime.rs:330:13
+  99: tracing_timeout::tests::reqwest::with_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:32:5
+ 100: core::ops::function::FnOnce::call_once
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/function.rs:250:5
+ 101: serial_test::serial_code_lock::local_serial_core
+             at /home/dvk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serial_test-3.2.0/src/serial_code_lock.rs:36:5
+ 102: tracing_timeout::tests::reqwest::with_reqwest
+             at ./src/tests/reqwest.rs:9:1
+ 103: tracing_timeout::tests::reqwest::with_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:9:10
+ 104: core::ops::function::FnOnce::call_once
+             at /home/dvk/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/function.rs:250:5
+ 105: core::ops::function::FnOnce::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/ops/function.rs:250:5
+ 106: test::__rust_begin_short_backtrace
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:648:18
+ 107: test::run_test_in_process::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:671:60
+ 108: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/panic/unwind_safe.rs:272:9
+ 109: std::panicking::try::do_call
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:589:40
+ 110: std::panicking::try
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:552:19
+ 111: std::panic::catch_unwind
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panic.rs:359:14
+ 112: test::run_test_in_process
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:671:27
+ 113: test::run_test::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:592:43
+ 114: test::run_test::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/test/src/lib.rs:622:41
+ 115: std::sys::backtrace::__rust_begin_short_backtrace
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/sys/backtrace.rs:152:18
+ 116: std::thread::Builder::spawn_unchecked_::{{closure}}::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/thread/mod.rs:559:17
+ 117: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/panic/unwind_safe.rs:272:9
+ 118: std::panicking::try::do_call
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:589:40
+ 119: std::panicking::try
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panicking.rs:552:19
+ 120: std::panic::catch_unwind
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/panic.rs:359:14
+ 121: std::thread::Builder::spawn_unchecked_::{{closure}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/thread/mod.rs:557:30
+ 122: core::ops::function::FnOnce::call_once{{vtable.shim}}
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/core/src/ops/function.rs:250:5
+ 123: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/alloc/src/boxed.rs:1966:9
+ 124: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/alloc/src/boxed.rs:1966:9
+ 125: std::sys::pal::unix::thread::Thread::new::thread_start
+             at /rustc/6b00bc3880198600130e1cf62b8f8a93494488cc/library/std/src/sys/pal/unix/thread.rs:97:17
+ 126: <unknown>
+ 127: <unknown>
+

@@ -1,0 +1,21 @@
+[package]
+name = "timeout-tracing"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+pin-project-lite = "0.2.16"
+tokio = { version = "1.46.1", features = ["time"] }
+tracing = "0.1.41"
+tracing-error = "0.2.1"
+
+[dev-dependencies]
+futures = "0.3.31"
+hyper = { version = "1.1.0" }
+insta = { version = "1.43.1", features = ["filters"] }
+itertools = "0.14.0"
+reqwest = { version = "0.12.22", features = ["hickory-dns"] }
+serial_test = "3.2.0"
+sqlx = { version = "0.8.6", features = ["postgres", "runtime-tokio"] }
+tokio = { version = "1.46.1", features = ["rt", "macros", "test-util"] }
+tracing-subscriber = "0.3.19"
