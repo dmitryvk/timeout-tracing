@@ -2,6 +2,8 @@
 name = "timeout-tracing"
 version = "0.1.0"
 edition = "2024"
+description = "Returns stack and span trace when the future hits a timeout"
+license = "MIT"
 
 [dependencies]
 pin-project-lite = "0.2.16"
