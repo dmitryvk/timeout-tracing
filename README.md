@@ -1,5 +1,5 @@
-`timeout-tracing` allows execution an async function with a timeout (much like `tokio::time::timeout`),
-and when the timeout happens it returns the exact location where the async code was awaiting at that specific moment.
+`timeout-tracing` allows executing an async function with a timeout (much like `tokio::time::timeout`).
+When the timeout elapses it returns the exact location where the async code was awaiting at that specific moment.
 
 # Basic usage
 
