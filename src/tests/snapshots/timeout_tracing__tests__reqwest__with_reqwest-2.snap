@@ -6,7 +6,7 @@ timeout elapsed at:
 trace 0:
 span trace:
    0: timeout_tracing::tests::reqwest::do_reqwest
-             at src/tests/reqwest.rs:29
+             at src/tests/reqwest.rs:[NNN]
 stack trace:
    0: timeout_tracing::trace::StackAndSpanTrace::capture
              at ./src/trace.rs:[NNN]:[NNN]
@@ -140,7 +140,7 @@ stack trace:
 trace 1:
 span trace:
    0: timeout_tracing::tests::reqwest::do_reqwest
-             at src/tests/reqwest.rs:29
+             at src/tests/reqwest.rs:[NNN]
 stack trace:
    0: timeout_tracing::trace::StackAndSpanTrace::capture
              at ./src/trace.rs:[NNN]:[NNN]
@@ -368,7 +368,7 @@ stack trace:
 trace 2:
 span trace:
    0: timeout_tracing::tests::reqwest::do_reqwest
-             at src/tests/reqwest.rs:29
+             at src/tests/reqwest.rs:[NNN]
 stack trace:
    0: timeout_tracing::trace::StackAndSpanTrace::capture
              at ./src/trace.rs:[NNN]:[NNN]
