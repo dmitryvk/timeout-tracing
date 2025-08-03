@@ -71,9 +71,14 @@ fn insta_trace_filters() -> Vec<(&'static str, &'static str)> {
         (r#".*/rustlib/src/rust/.*\n"#, r#""#),
         (r#".*/rustc/[0-9a-z]+/.*\n"#, r#""#),
         (
-            r#"file: ".*/index.crates.io-[0-9a-z]*/([^/]+)-[^-/]+/"#,
-            r#"file: "[crates]/$1-[ver]/"#,
+            r#""[^"]*/index.crates.io-[0-9a-z]*/([^/]+)-[^-/]+/"#,
+            r#""[crates]/$1-[ver]/"#,
+        ),
+        (
+            r#"at .*/index.crates.io-[0-9a-z]*/([^/]+)-[^-/]+/"#,
+            r#"at [crates]/$1-[ver]/"#,
         ),
         (r#"line: [0-9]+"#, r#"line: [NNN]"#),
+        (r#"\.rs:[0-9]+:[0-9]+"#, r#".rs:[NNN]:[NNN]"#),
     ]
 }

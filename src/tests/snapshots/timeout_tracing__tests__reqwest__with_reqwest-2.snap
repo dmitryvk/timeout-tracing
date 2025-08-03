@@ -1,0 +1,594 @@
+---
+source: src/tests/reqwest.rs
+expression: err
+---
+timeout elapsed at:
+trace 0:
+span trace:
+   0: timeout_tracing::tests::reqwest::do_reqwest
+             at src/tests/reqwest.rs:29
+stack trace:
+   0: timeout_tracing::trace::StackAndSpanTrace::capture
+             at ./src/trace.rs:[NNN]:[NNN]
+   1: <timeout_tracing::trace::DefaultTraceCapturer as timeout_tracing::trace::CaptureTrace>::capture
+             at ./src/trace.rs:[NNN]:[NNN]
+   2: timeout_tracing::waker::TracingTimeoutWaker<C>::clone
+             at ./src/waker.rs:[NNN]:[NNN]
+   3: timeout_tracing::waker::TracingTimeoutWaker<C>::raw_clone
+             at ./src/waker.rs:[NNN]:[NNN]
+   4: <core::task::wake::Waker as core::clone::Clone>::clone
+   5: futures_channel::oneshot::Inner<T>::recv
+             at [crates]/futures-channel-[ver]/src/oneshot.rs:[NNN]:[NNN]
+   6: <futures_channel::oneshot::Receiver<T> as core::future::future::Future>::poll
+             at [crates]/futures-channel-[ver]/src/oneshot.rs:[NNN]:[NNN]
+   7: hyper_util::client::legacy::pool::Checkout<T,K>::poll_waiter
+             at [crates]/hyper-util-[ver]/src/client/legacy/pool.rs:[NNN]:[NNN]
+   8: <hyper_util::client::legacy::pool::Checkout<T,K> as core::future::future::Future>::poll
+             at [crates]/hyper-util-[ver]/src/client/legacy/pool.rs:[NNN]:[NNN]
+   9: futures_util::future::future::FutureExt::poll_unpin
+             at [crates]/futures-util-[ver]/src/future/future/mod.rs:[NNN]:[NNN]
+  10: <futures_util::future::select::Select<A,B> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/select.rs:[NNN]:[NNN]
+  11: hyper_util::client::legacy::client::Client<C,B>::one_connection_for::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  12: hyper_util::client::legacy::client::Client<C,B>::connection_for::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  13: hyper_util::client::legacy::client::Client<C,B>::try_send_request::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  14: hyper_util::client::legacy::client::Client<C,B>::send_request::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  15: <hyper_util::client::legacy::client::ResponseFuture as core::future::future::Future>::poll
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  16: <reqwest::async_impl::client::HyperService as tower_service::Service<http::request::Request<reqwest::async_impl::body::Body>>>::call::{{closure}}
+             at [crates]/reqwest-[ver]/src/async_impl/client.rs:[NNN]:[NNN]
+  17: <core::pin::Pin<P> as core::future::future::Future>::poll
+  18: <futures_util::future::either::Either<A,B> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/either.rs:[NNN]:[NNN]
+  19: <tower_http::follow_redirect::ResponseFuture<S,ReqBody,P> as core::future::future::Future>::poll
+             at [crates]/tower-http-[ver]/src/follow_redirect/mod.rs:[NNN]:[NNN]
+  20: <reqwest::async_impl::client::PendingRequest as core::future::future::Future>::poll
+             at [crates]/reqwest-[ver]/src/async_impl/client.rs:[NNN]:[NNN]
+  21: <core::pin::Pin<P> as core::future::future::Future>::poll
+  22: <reqwest::async_impl::client::Pending as core::future::future::Future>::poll
+             at [crates]/reqwest-[ver]/src/async_impl/client.rs:[NNN]:[NNN]
+  23: reqwest::get::{{closure}}
+             at [crates]/reqwest-[ver]/src/lib.rs:[NNN]:[NNN]
+  24: timeout_tracing::tests::reqwest::do_reqwest::{{closure}}::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+  25: <tracing::instrument::Instrumented<T> as core::future::future::Future>::poll
+             at [crates]/tracing-[ver]/src/instrument.rs:[NNN]:[NNN]
+  26: timeout_tracing::tests::reqwest::do_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+  27: <timeout_tracing::TimeoutFuture<C,Fut> as core::future::future::Future>::poll
+             at ./src/lib.rs:[NNN]:[NNN]
+  28: timeout_tracing::tests::run_with_tracing::{{closure}}
+             at ./src/tests/mod.rs:[NNN]:[NNN]
+  29: timeout_tracing::tests::reqwest::with_reqwest::{{closure}}::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+  30: <core::pin::Pin<P> as core::future::future::Future>::poll
+  31: <core::pin::Pin<P> as core::future::future::Future>::poll
+  32: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  33: tokio::task::coop::with_budget
+             at [crates]/tokio-[ver]/src/task/coop/mod.rs:[NNN]:[NNN]
+  34: tokio::task::coop::budget
+             at [crates]/tokio-[ver]/src/task/coop/mod.rs:[NNN]:[NNN]
+  35: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  36: tokio::runtime::scheduler::current_thread::Context::enter
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  37: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  38: tokio::runtime::scheduler::current_thread::CoreGuard::enter::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  39: tokio::runtime::context::scoped::Scoped<T>::set
+             at [crates]/tokio-[ver]/src/runtime/context/scoped.rs:[NNN]:[NNN]
+  40: tokio::runtime::context::set_scheduler::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/context.rs:[NNN]:[NNN]
+  41: std::thread::local::LocalKey<T>::try_with
+  42: std::thread::local::LocalKey<T>::with
+  43: tokio::runtime::context::set_scheduler
+             at [crates]/tokio-[ver]/src/runtime/context.rs:[NNN]:[NNN]
+  44: tokio::runtime::scheduler::current_thread::CoreGuard::enter
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  45: tokio::runtime::scheduler::current_thread::CoreGuard::block_on
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  46: tokio::runtime::scheduler::current_thread::CurrentThread::block_on::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  47: tokio::runtime::context::runtime::enter_runtime
+             at [crates]/tokio-[ver]/src/runtime/context/runtime.rs:[NNN]:[NNN]
+  48: tokio::runtime::scheduler::current_thread::CurrentThread::block_on
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  49: tokio::runtime::runtime::Runtime::block_on_inner
+             at [crates]/tokio-[ver]/src/runtime/runtime.rs:[NNN]:[NNN]
+  50: tokio::runtime::runtime::Runtime::block_on
+             at [crates]/tokio-[ver]/src/runtime/runtime.rs:[NNN]:[NNN]
+  51: timeout_tracing::tests::reqwest::with_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+  52: core::ops::function::FnOnce::call_once
+  53: serial_test::serial_code_lock::local_serial_core
+             at [crates]/serial_test-[ver]/src/serial_code_lock.rs:[NNN]:[NNN]
+  54: timeout_tracing::tests::reqwest::with_reqwest
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+  55: timeout_tracing::tests::reqwest::with_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+  56: core::ops::function::FnOnce::call_once
+  57: core::ops::function::FnOnce::call_once
+  58: test::__rust_begin_short_backtrace
+  59: test::run_test_in_process::{{closure}}
+  60: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+  61: std::panicking::try::do_call
+  62: std::panicking::try
+  63: std::panic::catch_unwind
+  64: test::run_test_in_process
+  65: test::run_test::{{closure}}
+  66: test::run_test::{{closure}}
+  67: std::sys::backtrace::__rust_begin_short_backtrace
+  68: std::thread::Builder::spawn_unchecked_::{{closure}}::{{closure}}
+  69: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+  70: std::panicking::try::do_call
+  71: std::panicking::try
+  72: std::panic::catch_unwind
+  73: std::thread::Builder::spawn_unchecked_::{{closure}}
+  74: core::ops::function::FnOnce::call_once{{vtable.shim}}
+  75: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+  76: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+  77: std::sys::pal::unix::thread::Thread::new::thread_start
+  78: <unknown>
+  79: <unknown>
+
+trace 1:
+span trace:
+   0: timeout_tracing::tests::reqwest::do_reqwest
+             at src/tests/reqwest.rs:29
+stack trace:
+   0: timeout_tracing::trace::StackAndSpanTrace::capture
+             at ./src/trace.rs:[NNN]:[NNN]
+   1: <timeout_tracing::trace::DefaultTraceCapturer as timeout_tracing::trace::CaptureTrace>::capture
+             at ./src/trace.rs:[NNN]:[NNN]
+   2: timeout_tracing::waker::TracingTimeoutWaker<C>::clone
+             at ./src/waker.rs:[NNN]:[NNN]
+   3: timeout_tracing::waker::TracingTimeoutWaker<C>::raw_clone
+             at ./src/waker.rs:[NNN]:[NNN]
+   4: <core::task::wake::Waker as core::clone::Clone>::clone
+   5: futures_core::task::__internal::atomic_waker::AtomicWaker::register
+             at [crates]/futures-core-[ver]/src/task/__internal/atomic_waker.rs:[NNN]:[NNN]
+   6: <futures_util::stream::futures_unordered::FuturesUnordered<Fut> as futures_core::stream::Stream>::poll_next
+             at [crates]/futures-util-[ver]/src/stream/futures_unordered/mod.rs:[NNN]:[NNN]
+   7: futures_util::stream::stream::StreamExt::poll_next_unpin
+             at [crates]/futures-util-[ver]/src/stream/stream/mod.rs:[NNN]:[NNN]
+   8: <futures_util::stream::stream::next::Next<St> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/stream/stream/next.rs:[NNN]:[NNN]
+   9: hickory_resolver::name_server::name_server_pool::parallel_conn_loop::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/name_server/name_server_pool.rs:[NNN]:[NNN]
+  10: hickory_resolver::name_server::name_server_pool::NameServerPool<P>::try_send::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/name_server/name_server_pool.rs:[NNN]:[NNN]
+  11: <hickory_resolver::name_server::name_server_pool::NameServerPool<P> as hickory_proto::xfer::dns_handle::DnsHandle>::send::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/name_server/name_server_pool.rs:[NNN]:[NNN]
+  12: <futures_util::stream::once::Once<Fut> as futures_core::stream::Stream>::poll_next
+             at [crates]/futures-util-[ver]/src/stream/once.rs:[NNN]:[NNN]
+  13: <core::pin::Pin<P> as futures_core::stream::Stream>::poll_next
+             at [crates]/futures-core-[ver]/src/stream.rs:[NNN]:[NNN]
+  14: futures_util::stream::stream::StreamExt::poll_next_unpin
+             at [crates]/futures-util-[ver]/src/stream/stream/mod.rs:[NNN]:[NNN]
+  15: <hickory_proto::xfer::retry_dns_handle::RetrySendStream<H> as futures_core::stream::Stream>::poll_next
+             at [crates]/hickory-proto-[ver]/src/xfer/retry_dns_handle.rs:[NNN]:[NNN]
+  16: <core::pin::Pin<P> as futures_core::stream::Stream>::poll_next
+             at [crates]/futures-core-[ver]/src/stream.rs:[NNN]:[NNN]
+  17: futures_util::stream::stream::StreamExt::poll_next_unpin
+             at [crates]/futures-util-[ver]/src/stream/stream/mod.rs:[NNN]:[NNN]
+  18: <hickory_proto::xfer::FirstAnswerFuture<S> as core::future::future::Future>::poll
+             at [crates]/hickory-proto-[ver]/src/xfer/mod.rs:[NNN]:[NNN]
+  19: hickory_resolver::caching_client::CachingClient<C,E>::inner_lookup::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/caching_client.rs:[NNN]:[NNN]
+  20: <core::pin::Pin<P> as core::future::future::Future>::poll
+  21: hickory_resolver::lookup_ip::hosts_lookup::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/lookup_ip.rs:[NNN]:[NNN]
+  22: <core::pin::Pin<P> as core::future::future::Future>::poll
+  23: futures_util::future::future::FutureExt::poll_unpin
+             at [crates]/futures-util-[ver]/src/future/future/mod.rs:[NNN]:[NNN]
+  24: <futures_util::future::select::Select<A,B> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/select.rs:[NNN]:[NNN]
+  25: hickory_resolver::lookup_ip::ipv4_and_ipv6::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/lookup_ip.rs:[NNN]:[NNN]
+  26: hickory_resolver::lookup_ip::strategic_lookup::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/lookup_ip.rs:[NNN]:[NNN]
+  27: <hickory_resolver::lookup_ip::LookupIpFuture<C,E> as core::future::future::Future>::poll
+             at [crates]/hickory-resolver-[ver]/src/lookup_ip.rs:[NNN]:[NNN]
+  28: hickory_resolver::async_resolver::AsyncResolver<P>::lookup_ip::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/async_resolver.rs:[NNN]:[NNN]
+  29: <reqwest::dns::hickory::HickoryDnsResolver as reqwest::dns::resolve::Resolve>::resolve::{{closure}}
+             at [crates]/reqwest-[ver]/src/dns/hickory.rs:[NNN]:[NNN]
+  30: <core::pin::Pin<P> as core::future::future::Future>::poll
+  31: hyper_util::client::legacy::connect::dns::resolve::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/connect/dns.rs:[NNN]:[NNN]
+  32: hyper_util::client::legacy::connect::http::HttpConnector<R>::call_async::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/connect/http.rs:[NNN]:[NNN]
+  33: <hyper_util::client::legacy::connect::http::HttpConnector<R> as tower_service::Service<http::uri::Uri>>::call::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/connect/http.rs:[NNN]:[NNN]
+  34: <core::pin::Pin<P> as core::future::future::Future>::poll
+  35: <hyper_util::client::legacy::connect::http::HttpConnecting<R> as core::future::future::Future>::poll
+             at [crates]/hyper-util-[ver]/src/client/legacy/connect/http.rs:[NNN]:[NNN]
+  36: <hyper_tls::client::HttpsConnector<T> as tower_service::Service<http::uri::Uri>>::call::{{closure}}
+             at [crates]/hyper-tls-[ver]/src/client.rs:[NNN]:[NNN]
+  37: <core::pin::Pin<P> as core::future::future::Future>::poll
+  38: <hyper_tls::client::HttpsConnecting<T> as core::future::future::Future>::poll
+             at [crates]/hyper-tls-[ver]/src/client.rs:[NNN]:[NNN]
+  39: reqwest::connect::ConnectorService::connect_with_maybe_proxy::{{closure}}
+             at [crates]/reqwest-[ver]/src/connect.rs:[NNN]:[NNN]
+  40: reqwest::connect::with_timeout::{{closure}}
+             at [crates]/reqwest-[ver]/src/connect.rs:[NNN]:[NNN]
+  41: <core::pin::Pin<P> as core::future::future::Future>::poll
+  42: <hyper_util::service::oneshot::Oneshot<S,Req> as core::future::future::Future>::poll
+             at [crates]/hyper-util-[ver]/src/service/oneshot.rs:[NNN]:[NNN]
+  43: <F as futures_core::future::TryFuture>::try_poll
+             at [crates]/futures-core-[ver]/src/future.rs:[NNN]:[NNN]
+  44: <futures_util::future::try_future::into_future::IntoFuture<Fut> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/try_future/into_future.rs:[NNN]:[NNN]
+  45: <futures_util::future::future::map::Map<Fut,F> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/future/map.rs:[NNN]:[NNN]
+  46: <futures_util::future::future::Map<Fut,F> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/lib.rs:[NNN]:[NNN]
+  47: <futures_util::future::try_future::MapErr<Fut,F> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/lib.rs:[NNN]:[NNN]
+  48: <F as futures_core::future::TryFuture>::try_poll
+             at [crates]/futures-core-[ver]/src/future.rs:[NNN]:[NNN]
+  49: <futures_util::future::try_future::into_future::IntoFuture<Fut> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/try_future/into_future.rs:[NNN]:[NNN]
+  50: <futures_util::future::future::map::Map<Fut,F> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/future/map.rs:[NNN]:[NNN]
+  51: <futures_util::future::future::Map<Fut,F> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/lib.rs:[NNN]:[NNN]
+  52: <futures_util::future::try_future::MapOk<Fut,F> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/lib.rs:[NNN]:[NNN]
+  53: <F as futures_core::future::TryFuture>::try_poll
+             at [crates]/futures-core-[ver]/src/future.rs:[NNN]:[NNN]
+  54: <futures_util::future::try_future::try_flatten::TryFlatten<Fut,<Fut as futures_core::future::TryFuture>::Ok> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/try_future/try_flatten.rs:[NNN]:[NNN]
+  55: <futures_util::future::try_future::TryFlatten<Fut1,Fut2> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/lib.rs:[NNN]:[NNN]
+  56: <futures_util::future::try_future::AndThen<Fut1,Fut2,F> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/lib.rs:[NNN]:[NNN]
+  57: <futures_util::future::either::Either<A,B> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/either.rs:[NNN]:[NNN]
+  58: <hyper_util::common::lazy::Lazy<F,R> as core::future::future::Future>::poll
+             at [crates]/hyper-util-[ver]/src/common/lazy.rs:[NNN]:[NNN]
+  59: futures_util::future::future::FutureExt::poll_unpin
+             at [crates]/futures-util-[ver]/src/future/future/mod.rs:[NNN]:[NNN]
+  60: <futures_util::future::select::Select<A,B> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/select.rs:[NNN]:[NNN]
+  61: hyper_util::client::legacy::client::Client<C,B>::one_connection_for::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  62: hyper_util::client::legacy::client::Client<C,B>::connection_for::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  63: hyper_util::client::legacy::client::Client<C,B>::try_send_request::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  64: hyper_util::client::legacy::client::Client<C,B>::send_request::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  65: <hyper_util::client::legacy::client::ResponseFuture as core::future::future::Future>::poll
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  66: <reqwest::async_impl::client::HyperService as tower_service::Service<http::request::Request<reqwest::async_impl::body::Body>>>::call::{{closure}}
+             at [crates]/reqwest-[ver]/src/async_impl/client.rs:[NNN]:[NNN]
+  67: <core::pin::Pin<P> as core::future::future::Future>::poll
+  68: <futures_util::future::either::Either<A,B> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/either.rs:[NNN]:[NNN]
+  69: <tower_http::follow_redirect::ResponseFuture<S,ReqBody,P> as core::future::future::Future>::poll
+             at [crates]/tower-http-[ver]/src/follow_redirect/mod.rs:[NNN]:[NNN]
+  70: <reqwest::async_impl::client::PendingRequest as core::future::future::Future>::poll
+             at [crates]/reqwest-[ver]/src/async_impl/client.rs:[NNN]:[NNN]
+  71: <core::pin::Pin<P> as core::future::future::Future>::poll
+  72: <reqwest::async_impl::client::Pending as core::future::future::Future>::poll
+             at [crates]/reqwest-[ver]/src/async_impl/client.rs:[NNN]:[NNN]
+  73: reqwest::get::{{closure}}
+             at [crates]/reqwest-[ver]/src/lib.rs:[NNN]:[NNN]
+  74: timeout_tracing::tests::reqwest::do_reqwest::{{closure}}::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+  75: <tracing::instrument::Instrumented<T> as core::future::future::Future>::poll
+             at [crates]/tracing-[ver]/src/instrument.rs:[NNN]:[NNN]
+  76: timeout_tracing::tests::reqwest::do_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+  77: <timeout_tracing::TimeoutFuture<C,Fut> as core::future::future::Future>::poll
+             at ./src/lib.rs:[NNN]:[NNN]
+  78: timeout_tracing::tests::run_with_tracing::{{closure}}
+             at ./src/tests/mod.rs:[NNN]:[NNN]
+  79: timeout_tracing::tests::reqwest::with_reqwest::{{closure}}::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+  80: <core::pin::Pin<P> as core::future::future::Future>::poll
+  81: <core::pin::Pin<P> as core::future::future::Future>::poll
+  82: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  83: tokio::task::coop::with_budget
+             at [crates]/tokio-[ver]/src/task/coop/mod.rs:[NNN]:[NNN]
+  84: tokio::task::coop::budget
+             at [crates]/tokio-[ver]/src/task/coop/mod.rs:[NNN]:[NNN]
+  85: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  86: tokio::runtime::scheduler::current_thread::Context::enter
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  87: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  88: tokio::runtime::scheduler::current_thread::CoreGuard::enter::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  89: tokio::runtime::context::scoped::Scoped<T>::set
+             at [crates]/tokio-[ver]/src/runtime/context/scoped.rs:[NNN]:[NNN]
+  90: tokio::runtime::context::set_scheduler::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/context.rs:[NNN]:[NNN]
+  91: std::thread::local::LocalKey<T>::try_with
+  92: std::thread::local::LocalKey<T>::with
+  93: tokio::runtime::context::set_scheduler
+             at [crates]/tokio-[ver]/src/runtime/context.rs:[NNN]:[NNN]
+  94: tokio::runtime::scheduler::current_thread::CoreGuard::enter
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  95: tokio::runtime::scheduler::current_thread::CoreGuard::block_on
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  96: tokio::runtime::scheduler::current_thread::CurrentThread::block_on::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  97: tokio::runtime::context::runtime::enter_runtime
+             at [crates]/tokio-[ver]/src/runtime/context/runtime.rs:[NNN]:[NNN]
+  98: tokio::runtime::scheduler::current_thread::CurrentThread::block_on
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  99: tokio::runtime::runtime::Runtime::block_on_inner
+             at [crates]/tokio-[ver]/src/runtime/runtime.rs:[NNN]:[NNN]
+ 100: tokio::runtime::runtime::Runtime::block_on
+             at [crates]/tokio-[ver]/src/runtime/runtime.rs:[NNN]:[NNN]
+ 101: timeout_tracing::tests::reqwest::with_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+ 102: core::ops::function::FnOnce::call_once
+ 103: serial_test::serial_code_lock::local_serial_core
+             at [crates]/serial_test-[ver]/src/serial_code_lock.rs:[NNN]:[NNN]
+ 104: timeout_tracing::tests::reqwest::with_reqwest
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+ 105: timeout_tracing::tests::reqwest::with_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+ 106: core::ops::function::FnOnce::call_once
+ 107: core::ops::function::FnOnce::call_once
+ 108: test::__rust_begin_short_backtrace
+ 109: test::run_test_in_process::{{closure}}
+ 110: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+ 111: std::panicking::try::do_call
+ 112: std::panicking::try
+ 113: std::panic::catch_unwind
+ 114: test::run_test_in_process
+ 115: test::run_test::{{closure}}
+ 116: test::run_test::{{closure}}
+ 117: std::sys::backtrace::__rust_begin_short_backtrace
+ 118: std::thread::Builder::spawn_unchecked_::{{closure}}::{{closure}}
+ 119: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+ 120: std::panicking::try::do_call
+ 121: std::panicking::try
+ 122: std::panic::catch_unwind
+ 123: std::thread::Builder::spawn_unchecked_::{{closure}}
+ 124: core::ops::function::FnOnce::call_once{{vtable.shim}}
+ 125: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+ 126: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+ 127: std::sys::pal::unix::thread::Thread::new::thread_start
+ 128: <unknown>
+ 129: <unknown>
+
+trace 2:
+span trace:
+   0: timeout_tracing::tests::reqwest::do_reqwest
+             at src/tests/reqwest.rs:29
+stack trace:
+   0: timeout_tracing::trace::StackAndSpanTrace::capture
+             at ./src/trace.rs:[NNN]:[NNN]
+   1: <timeout_tracing::trace::DefaultTraceCapturer as timeout_tracing::trace::CaptureTrace>::capture
+             at ./src/trace.rs:[NNN]:[NNN]
+   2: timeout_tracing::waker::TracingTimeoutWaker<C>::clone
+             at ./src/waker.rs:[NNN]:[NNN]
+   3: timeout_tracing::waker::TracingTimeoutWaker<C>::raw_clone
+             at ./src/waker.rs:[NNN]:[NNN]
+   4: <core::task::wake::Waker as core::clone::Clone>::clone
+   5: futures_core::task::__internal::atomic_waker::AtomicWaker::register
+             at [crates]/futures-core-[ver]/src/task/__internal/atomic_waker.rs:[NNN]:[NNN]
+   6: <futures_util::stream::futures_unordered::FuturesUnordered<Fut> as futures_core::stream::Stream>::poll_next
+             at [crates]/futures-util-[ver]/src/stream/futures_unordered/mod.rs:[NNN]:[NNN]
+   7: futures_util::stream::stream::StreamExt::poll_next_unpin
+             at [crates]/futures-util-[ver]/src/stream/stream/mod.rs:[NNN]:[NNN]
+   8: <futures_util::stream::stream::next::Next<St> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/stream/stream/next.rs:[NNN]:[NNN]
+   9: hickory_resolver::name_server::name_server_pool::parallel_conn_loop::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/name_server/name_server_pool.rs:[NNN]:[NNN]
+  10: hickory_resolver::name_server::name_server_pool::NameServerPool<P>::try_send::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/name_server/name_server_pool.rs:[NNN]:[NNN]
+  11: <hickory_resolver::name_server::name_server_pool::NameServerPool<P> as hickory_proto::xfer::dns_handle::DnsHandle>::send::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/name_server/name_server_pool.rs:[NNN]:[NNN]
+  12: <futures_util::stream::once::Once<Fut> as futures_core::stream::Stream>::poll_next
+             at [crates]/futures-util-[ver]/src/stream/once.rs:[NNN]:[NNN]
+  13: <core::pin::Pin<P> as futures_core::stream::Stream>::poll_next
+             at [crates]/futures-core-[ver]/src/stream.rs:[NNN]:[NNN]
+  14: futures_util::stream::stream::StreamExt::poll_next_unpin
+             at [crates]/futures-util-[ver]/src/stream/stream/mod.rs:[NNN]:[NNN]
+  15: <hickory_proto::xfer::retry_dns_handle::RetrySendStream<H> as futures_core::stream::Stream>::poll_next
+             at [crates]/hickory-proto-[ver]/src/xfer/retry_dns_handle.rs:[NNN]:[NNN]
+  16: <core::pin::Pin<P> as futures_core::stream::Stream>::poll_next
+             at [crates]/futures-core-[ver]/src/stream.rs:[NNN]:[NNN]
+  17: futures_util::stream::stream::StreamExt::poll_next_unpin
+             at [crates]/futures-util-[ver]/src/stream/stream/mod.rs:[NNN]:[NNN]
+  18: <hickory_proto::xfer::FirstAnswerFuture<S> as core::future::future::Future>::poll
+             at [crates]/hickory-proto-[ver]/src/xfer/mod.rs:[NNN]:[NNN]
+  19: hickory_resolver::caching_client::CachingClient<C,E>::inner_lookup::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/caching_client.rs:[NNN]:[NNN]
+  20: <core::pin::Pin<P> as core::future::future::Future>::poll
+  21: hickory_resolver::lookup_ip::hosts_lookup::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/lookup_ip.rs:[NNN]:[NNN]
+  22: <core::pin::Pin<P> as core::future::future::Future>::poll
+  23: futures_util::future::future::FutureExt::poll_unpin
+             at [crates]/futures-util-[ver]/src/future/future/mod.rs:[NNN]:[NNN]
+  24: <futures_util::future::select::Select<A,B> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/select.rs:[NNN]:[NNN]
+  25: hickory_resolver::lookup_ip::ipv4_and_ipv6::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/lookup_ip.rs:[NNN]:[NNN]
+  26: hickory_resolver::lookup_ip::strategic_lookup::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/lookup_ip.rs:[NNN]:[NNN]
+  27: <hickory_resolver::lookup_ip::LookupIpFuture<C,E> as core::future::future::Future>::poll
+             at [crates]/hickory-resolver-[ver]/src/lookup_ip.rs:[NNN]:[NNN]
+  28: hickory_resolver::async_resolver::AsyncResolver<P>::lookup_ip::{{closure}}
+             at [crates]/hickory-resolver-[ver]/src/async_resolver.rs:[NNN]:[NNN]
+  29: <reqwest::dns::hickory::HickoryDnsResolver as reqwest::dns::resolve::Resolve>::resolve::{{closure}}
+             at [crates]/reqwest-[ver]/src/dns/hickory.rs:[NNN]:[NNN]
+  30: <core::pin::Pin<P> as core::future::future::Future>::poll
+  31: hyper_util::client::legacy::connect::dns::resolve::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/connect/dns.rs:[NNN]:[NNN]
+  32: hyper_util::client::legacy::connect::http::HttpConnector<R>::call_async::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/connect/http.rs:[NNN]:[NNN]
+  33: <hyper_util::client::legacy::connect::http::HttpConnector<R> as tower_service::Service<http::uri::Uri>>::call::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/connect/http.rs:[NNN]:[NNN]
+  34: <core::pin::Pin<P> as core::future::future::Future>::poll
+  35: <hyper_util::client::legacy::connect::http::HttpConnecting<R> as core::future::future::Future>::poll
+             at [crates]/hyper-util-[ver]/src/client/legacy/connect/http.rs:[NNN]:[NNN]
+  36: <hyper_tls::client::HttpsConnector<T> as tower_service::Service<http::uri::Uri>>::call::{{closure}}
+             at [crates]/hyper-tls-[ver]/src/client.rs:[NNN]:[NNN]
+  37: <core::pin::Pin<P> as core::future::future::Future>::poll
+  38: <hyper_tls::client::HttpsConnecting<T> as core::future::future::Future>::poll
+             at [crates]/hyper-tls-[ver]/src/client.rs:[NNN]:[NNN]
+  39: reqwest::connect::ConnectorService::connect_with_maybe_proxy::{{closure}}
+             at [crates]/reqwest-[ver]/src/connect.rs:[NNN]:[NNN]
+  40: reqwest::connect::with_timeout::{{closure}}
+             at [crates]/reqwest-[ver]/src/connect.rs:[NNN]:[NNN]
+  41: <core::pin::Pin<P> as core::future::future::Future>::poll
+  42: <hyper_util::service::oneshot::Oneshot<S,Req> as core::future::future::Future>::poll
+             at [crates]/hyper-util-[ver]/src/service/oneshot.rs:[NNN]:[NNN]
+  43: <F as futures_core::future::TryFuture>::try_poll
+             at [crates]/futures-core-[ver]/src/future.rs:[NNN]:[NNN]
+  44: <futures_util::future::try_future::into_future::IntoFuture<Fut> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/try_future/into_future.rs:[NNN]:[NNN]
+  45: <futures_util::future::future::map::Map<Fut,F> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/future/map.rs:[NNN]:[NNN]
+  46: <futures_util::future::future::Map<Fut,F> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/lib.rs:[NNN]:[NNN]
+  47: <futures_util::future::try_future::MapErr<Fut,F> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/lib.rs:[NNN]:[NNN]
+  48: <F as futures_core::future::TryFuture>::try_poll
+             at [crates]/futures-core-[ver]/src/future.rs:[NNN]:[NNN]
+  49: <futures_util::future::try_future::into_future::IntoFuture<Fut> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/try_future/into_future.rs:[NNN]:[NNN]
+  50: <futures_util::future::future::map::Map<Fut,F> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/future/map.rs:[NNN]:[NNN]
+  51: <futures_util::future::future::Map<Fut,F> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/lib.rs:[NNN]:[NNN]
+  52: <futures_util::future::try_future::MapOk<Fut,F> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/lib.rs:[NNN]:[NNN]
+  53: <F as futures_core::future::TryFuture>::try_poll
+             at [crates]/futures-core-[ver]/src/future.rs:[NNN]:[NNN]
+  54: <futures_util::future::try_future::try_flatten::TryFlatten<Fut,<Fut as futures_core::future::TryFuture>::Ok> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/try_future/try_flatten.rs:[NNN]:[NNN]
+  55: <futures_util::future::try_future::TryFlatten<Fut1,Fut2> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/lib.rs:[NNN]:[NNN]
+  56: <futures_util::future::try_future::AndThen<Fut1,Fut2,F> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/lib.rs:[NNN]:[NNN]
+  57: <futures_util::future::either::Either<A,B> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/either.rs:[NNN]:[NNN]
+  58: <hyper_util::common::lazy::Lazy<F,R> as core::future::future::Future>::poll
+             at [crates]/hyper-util-[ver]/src/common/lazy.rs:[NNN]:[NNN]
+  59: futures_util::future::future::FutureExt::poll_unpin
+             at [crates]/futures-util-[ver]/src/future/future/mod.rs:[NNN]:[NNN]
+  60: <futures_util::future::select::Select<A,B> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/select.rs:[NNN]:[NNN]
+  61: hyper_util::client::legacy::client::Client<C,B>::one_connection_for::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  62: hyper_util::client::legacy::client::Client<C,B>::connection_for::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  63: hyper_util::client::legacy::client::Client<C,B>::try_send_request::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  64: hyper_util::client::legacy::client::Client<C,B>::send_request::{{closure}}
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  65: <hyper_util::client::legacy::client::ResponseFuture as core::future::future::Future>::poll
+             at [crates]/hyper-util-[ver]/src/client/legacy/client.rs:[NNN]:[NNN]
+  66: <reqwest::async_impl::client::HyperService as tower_service::Service<http::request::Request<reqwest::async_impl::body::Body>>>::call::{{closure}}
+             at [crates]/reqwest-[ver]/src/async_impl/client.rs:[NNN]:[NNN]
+  67: <core::pin::Pin<P> as core::future::future::Future>::poll
+  68: <futures_util::future::either::Either<A,B> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/future/either.rs:[NNN]:[NNN]
+  69: <tower_http::follow_redirect::ResponseFuture<S,ReqBody,P> as core::future::future::Future>::poll
+             at [crates]/tower-http-[ver]/src/follow_redirect/mod.rs:[NNN]:[NNN]
+  70: <reqwest::async_impl::client::PendingRequest as core::future::future::Future>::poll
+             at [crates]/reqwest-[ver]/src/async_impl/client.rs:[NNN]:[NNN]
+  71: <core::pin::Pin<P> as core::future::future::Future>::poll
+  72: <reqwest::async_impl::client::Pending as core::future::future::Future>::poll
+             at [crates]/reqwest-[ver]/src/async_impl/client.rs:[NNN]:[NNN]
+  73: reqwest::get::{{closure}}
+             at [crates]/reqwest-[ver]/src/lib.rs:[NNN]:[NNN]
+  74: timeout_tracing::tests::reqwest::do_reqwest::{{closure}}::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+  75: <tracing::instrument::Instrumented<T> as core::future::future::Future>::poll
+             at [crates]/tracing-[ver]/src/instrument.rs:[NNN]:[NNN]
+  76: timeout_tracing::tests::reqwest::do_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+  77: <timeout_tracing::TimeoutFuture<C,Fut> as core::future::future::Future>::poll
+             at ./src/lib.rs:[NNN]:[NNN]
+  78: timeout_tracing::tests::run_with_tracing::{{closure}}
+             at ./src/tests/mod.rs:[NNN]:[NNN]
+  79: timeout_tracing::tests::reqwest::with_reqwest::{{closure}}::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+  80: <core::pin::Pin<P> as core::future::future::Future>::poll
+  81: <core::pin::Pin<P> as core::future::future::Future>::poll
+  82: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  83: tokio::task::coop::with_budget
+             at [crates]/tokio-[ver]/src/task/coop/mod.rs:[NNN]:[NNN]
+  84: tokio::task::coop::budget
+             at [crates]/tokio-[ver]/src/task/coop/mod.rs:[NNN]:[NNN]
+  85: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  86: tokio::runtime::scheduler::current_thread::Context::enter
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  87: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  88: tokio::runtime::scheduler::current_thread::CoreGuard::enter::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  89: tokio::runtime::context::scoped::Scoped<T>::set
+             at [crates]/tokio-[ver]/src/runtime/context/scoped.rs:[NNN]:[NNN]
+  90: tokio::runtime::context::set_scheduler::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/context.rs:[NNN]:[NNN]
+  91: std::thread::local::LocalKey<T>::try_with
+  92: std::thread::local::LocalKey<T>::with
+  93: tokio::runtime::context::set_scheduler
+             at [crates]/tokio-[ver]/src/runtime/context.rs:[NNN]:[NNN]
+  94: tokio::runtime::scheduler::current_thread::CoreGuard::enter
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  95: tokio::runtime::scheduler::current_thread::CoreGuard::block_on
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  96: tokio::runtime::scheduler::current_thread::CurrentThread::block_on::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  97: tokio::runtime::context::runtime::enter_runtime
+             at [crates]/tokio-[ver]/src/runtime/context/runtime.rs:[NNN]:[NNN]
+  98: tokio::runtime::scheduler::current_thread::CurrentThread::block_on
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  99: tokio::runtime::runtime::Runtime::block_on_inner
+             at [crates]/tokio-[ver]/src/runtime/runtime.rs:[NNN]:[NNN]
+ 100: tokio::runtime::runtime::Runtime::block_on
+             at [crates]/tokio-[ver]/src/runtime/runtime.rs:[NNN]:[NNN]
+ 101: timeout_tracing::tests::reqwest::with_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+ 102: core::ops::function::FnOnce::call_once
+ 103: serial_test::serial_code_lock::local_serial_core
+             at [crates]/serial_test-[ver]/src/serial_code_lock.rs:[NNN]:[NNN]
+ 104: timeout_tracing::tests::reqwest::with_reqwest
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+ 105: timeout_tracing::tests::reqwest::with_reqwest::{{closure}}
+             at ./src/tests/reqwest.rs:[NNN]:[NNN]
+ 106: core::ops::function::FnOnce::call_once
+ 107: core::ops::function::FnOnce::call_once
+ 108: test::__rust_begin_short_backtrace
+ 109: test::run_test_in_process::{{closure}}
+ 110: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+ 111: std::panicking::try::do_call
+ 112: std::panicking::try
+ 113: std::panic::catch_unwind
+ 114: test::run_test_in_process
+ 115: test::run_test::{{closure}}
+ 116: test::run_test::{{closure}}
+ 117: std::sys::backtrace::__rust_begin_short_backtrace
+ 118: std::thread::Builder::spawn_unchecked_::{{closure}}::{{closure}}
+ 119: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+ 120: std::panicking::try::do_call
+ 121: std::panicking::try
+ 122: std::panic::catch_unwind
+ 123: std::thread::Builder::spawn_unchecked_::{{closure}}
+ 124: core::ops::function::FnOnce::call_once{{vtable.shim}}
+ 125: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+ 126: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+ 127: std::sys::pal::unix::thread::Thread::new::thread_start
+ 128: <unknown>
+ 129: <unknown>

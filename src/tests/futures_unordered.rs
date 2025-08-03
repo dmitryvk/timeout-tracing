@@ -17,20 +17,14 @@ async fn with_futures_unordered() {
 
     assert!(matches!(result, Err(TimeoutElapsed { .. })));
     // Can't see inside FuturesUnordered, as it manages its own sub-wakers
-    assert_eq!(result.as_ref().err().unwrap().active_traces.len(), 1);
-    assert!(
-        result
-            .as_ref()
-            .err()
-            .unwrap()
-            .active_traces
-            .iter()
-            .any(|e| e.stack_trace.to_string().contains("do_unordered"))
-    );
+    let mut err = result.err().unwrap();
+    err.active_traces
+        .sort_by_cached_key(|trace| trace.span_trace.to_string());
     insta::with_settings!({
         filters => insta_trace_filters()
     }, {
-        insta::assert_debug_snapshot!(result);
+        insta::assert_debug_snapshot!(err);
+        insta::assert_snapshot!(err);
     });
 }
 

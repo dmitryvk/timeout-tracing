@@ -44,7 +44,7 @@ impl Display for StackAndSpanTrace {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(
             f,
-            "{span_trace}\n{stack_trace}",
+            "span trace:\n{span_trace}\nstack trace:\n{stack_trace}",
             span_trace = self.span_trace,
             stack_trace = self.stack_trace,
         )

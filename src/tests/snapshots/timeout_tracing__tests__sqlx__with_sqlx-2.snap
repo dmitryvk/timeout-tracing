@@ -1,0 +1,37 @@
+---
+source: src/tests/sqlx.rs
+expression: err
+---
+timeout elapsed at:
+trace 0:
+span trace:
+   0: timeout_tracing::tests::sqlx::exec_query
+           with sql="select pg_sleep(2)"[crates]/serial_test-[ver]/src/serial_code_lock.rs:[NNN]:[NNN]
+  75: timeout_tracing::tests::sqlx::with_sqlx
+             at ./src/tests/sqlx.rs:[NNN]:[NNN]
+  76: timeout_tracing::tests::sqlx::with_sqlx::{{closure}}
+             at ./src/tests/sqlx.rs:[NNN]:[NNN]
+  77: core::ops::function::FnOnce::call_once
+  78: core::ops::function::FnOnce::call_once
+  79: test::__rust_begin_short_backtrace
+  80: test::run_test_in_process::{{closure}}
+  81: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+  82: std::panicking::try::do_call
+  83: std::panicking::try
+  84: std::panic::catch_unwind
+  85: test::run_test_in_process
+  86: test::run_test::{{closure}}
+  87: test::run_test::{{closure}}
+  88: std::sys::backtrace::__rust_begin_short_backtrace
+  89: std::thread::Builder::spawn_unchecked_::{{closure}}::{{closure}}
+  90: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+  91: std::panicking::try::do_call
+  92: std::panicking::try
+  93: std::panic::catch_unwind
+  94: std::thread::Builder::spawn_unchecked_::{{closure}}
+  95: core::ops::function::FnOnce::call_once{{vtable.shim}}
+  96: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+  97: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+  98: std::sys::pal::unix::thread::Thread::new::thread_start
+  99: <unknown>
+ 100: <unknown>

@@ -1,0 +1,110 @@
+---
+source: src/tests/futures_unordered.rs
+expression: err
+---
+timeout elapsed at:
+trace 0:
+span trace:
+   0: timeout_tracing::tests::futures_unordered::do_unordered
+             at src/tests/futures_unordered.rs:31
+stack trace:
+   0: timeout_tracing::trace::StackAndSpanTrace::capture
+             at ./src/trace.rs:[NNN]:[NNN]
+   1: <timeout_tracing::trace::DefaultTraceCapturer as timeout_tracing::trace::CaptureTrace>::capture
+             at ./src/trace.rs:[NNN]:[NNN]
+   2: timeout_tracing::waker::TracingTimeoutWaker<C>::clone
+             at ./src/waker.rs:[NNN]:[NNN]
+   3: timeout_tracing::waker::TracingTimeoutWaker<C>::raw_clone
+             at ./src/waker.rs:[NNN]:[NNN]
+   4: <core::task::wake::Waker as core::clone::Clone>::clone
+   5: futures_core::task::__internal::atomic_waker::AtomicWaker::register
+             at [crates]/futures-core-[ver]/src/task/__internal/atomic_waker.rs:[NNN]:[NNN]
+   6: <futures_util::stream::futures_unordered::FuturesUnordered<Fut> as futures_core::stream::Stream>::poll_next
+             at [crates]/futures-util-[ver]/src/stream/futures_unordered/mod.rs:[NNN]:[NNN]
+   7: futures_util::stream::stream::StreamExt::poll_next_unpin
+             at [crates]/futures-util-[ver]/src/stream/stream/mod.rs:[NNN]:[NNN]
+   8: <futures_util::stream::stream::next::Next<St> as core::future::future::Future>::poll
+             at [crates]/futures-util-[ver]/src/stream/stream/next.rs:[NNN]:[NNN]
+   9: timeout_tracing::tests::futures_unordered::do_unordered::{{closure}}::{{closure}}
+             at ./src/tests/futures_unordered.rs:[NNN]:[NNN]
+  10: <tracing::instrument::Instrumented<T> as core::future::future::Future>::poll
+             at [crates]/tracing-[ver]/src/instrument.rs:[NNN]:[NNN]
+  11: timeout_tracing::tests::futures_unordered::do_unordered::{{closure}}
+             at ./src/tests/futures_unordered.rs:[NNN]:[NNN]
+  12: <timeout_tracing::TimeoutFuture<C,Fut> as core::future::future::Future>::poll
+             at ./src/lib.rs:[NNN]:[NNN]
+  13: timeout_tracing::tests::run_with_tracing::{{closure}}
+             at ./src/tests/mod.rs:[NNN]:[NNN]
+  14: timeout_tracing::tests::futures_unordered::with_futures_unordered::{{closure}}::{{closure}}
+             at ./src/tests/futures_unordered.rs:[NNN]:[NNN]
+  15: <core::pin::Pin<P> as core::future::future::Future>::poll
+  16: <core::pin::Pin<P> as core::future::future::Future>::poll
+  17: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  18: tokio::task::coop::with_budget
+             at [crates]/tokio-[ver]/src/task/coop/mod.rs:[NNN]:[NNN]
+  19: tokio::task::coop::budget
+             at [crates]/tokio-[ver]/src/task/coop/mod.rs:[NNN]:[NNN]
+  20: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  21: tokio::runtime::scheduler::current_thread::Context::enter
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  22: tokio::runtime::scheduler::current_thread::CoreGuard::block_on::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  23: tokio::runtime::scheduler::current_thread::CoreGuard::enter::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  24: tokio::runtime::context::scoped::Scoped<T>::set
+             at [crates]/tokio-[ver]/src/runtime/context/scoped.rs:[NNN]:[NNN]
+  25: tokio::runtime::context::set_scheduler::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/context.rs:[NNN]:[NNN]
+  26: std::thread::local::LocalKey<T>::try_with
+  27: std::thread::local::LocalKey<T>::with
+  28: tokio::runtime::context::set_scheduler
+             at [crates]/tokio-[ver]/src/runtime/context.rs:[NNN]:[NNN]
+  29: tokio::runtime::scheduler::current_thread::CoreGuard::enter
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  30: tokio::runtime::scheduler::current_thread::CoreGuard::block_on
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  31: tokio::runtime::scheduler::current_thread::CurrentThread::block_on::{{closure}}
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  32: tokio::runtime::context::runtime::enter_runtime
+             at [crates]/tokio-[ver]/src/runtime/context/runtime.rs:[NNN]:[NNN]
+  33: tokio::runtime::scheduler::current_thread::CurrentThread::block_on
+             at [crates]/tokio-[ver]/src/runtime/scheduler/current_thread/mod.rs:[NNN]:[NNN]
+  34: tokio::runtime::runtime::Runtime::block_on_inner
+             at [crates]/tokio-[ver]/src/runtime/runtime.rs:[NNN]:[NNN]
+  35: tokio::runtime::runtime::Runtime::block_on
+             at [crates]/tokio-[ver]/src/runtime/runtime.rs:[NNN]:[NNN]
+  36: timeout_tracing::tests::futures_unordered::with_futures_unordered::{{closure}}
+             at ./src/tests/futures_unordered.rs:[NNN]:[NNN]
+  37: core::ops::function::FnOnce::call_once
+  38: serial_test::serial_code_lock::local_serial_core
+             at [crates]/serial_test-[ver]/src/serial_code_lock.rs:[NNN]:[NNN]
+  39: timeout_tracing::tests::futures_unordered::with_futures_unordered
+             at ./src/tests/futures_unordered.rs:[NNN]:[NNN]
+  40: timeout_tracing::tests::futures_unordered::with_futures_unordered::{{closure}}
+             at ./src/tests/futures_unordered.rs:[NNN]:[NNN]
+  41: core::ops::function::FnOnce::call_once
+  42: core::ops::function::FnOnce::call_once
+  43: test::__rust_begin_short_backtrace
+  44: test::run_test_in_process::{{closure}}
+  45: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+  46: std::panicking::try::do_call
+  47: std::panicking::try
+  48: std::panic::catch_unwind
+  49: test::run_test_in_process
+  50: test::run_test::{{closure}}
+  51: test::run_test::{{closure}}
+  52: std::sys::backtrace::__rust_begin_short_backtrace
+  53: std::thread::Builder::spawn_unchecked_::{{closure}}::{{closure}}
+  54: <core::panic::unwind_safe::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+  55: std::panicking::try::do_call
+  56: std::panicking::try
+  57: std::panic::catch_unwind
+  58: std::thread::Builder::spawn_unchecked_::{{closure}}
+  59: core::ops::function::FnOnce::call_once{{vtable.shim}}
+  60: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+  61: <alloc::boxed::Box<F,A> as core::ops::function::FnOnce<Args>>::call_once
+  62: std::sys::pal::unix::thread::Thread::new::thread_start
+  63: <unknown>
+  64: <unknown>
