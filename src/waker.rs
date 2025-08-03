@@ -46,15 +46,15 @@ where
         )
     }
 
-    pub fn new(inner: Arc<TracingTimeoutWakerInner<C>>) -> Box<Self> {
-        Box::new(Self { inner, idx: None })
-    }
-
-    pub fn as_std_waker(self: Box<Self>) -> Waker {
-        let data = Box::into_raw(self);
+    pub fn new_std_waker(inner: Arc<TracingTimeoutWakerInner<C>>) -> Waker {
+        let data = Box::into_raw(Box::new(Self { inner, idx: None }));
         unsafe { Waker::new(data as *const (), Self::vtable()) }
     }
 
+    #[allow(
+        clippy::unnecessary_box_returns,
+        reason = "Box<Self> is necessary for correctness"
+    )]
     fn clone(&self) -> Box<Self> {
         let trace = self.inner.capture.capture();
         let idx = {
@@ -70,23 +70,23 @@ where
     }
 
     unsafe fn raw_clone(data: *const ()) -> RawWaker {
-        let this = unsafe { &*(data as *const Self) };
+        let this = unsafe { &*data.cast::<Self>() };
         let cloned = this.clone();
         RawWaker::new(Box::into_raw(cloned) as *const (), Self::vtable())
     }
 
     fn wake(&self) {
-        self.inner.inner_waker.wake_by_ref()
+        self.inner.inner_waker.wake_by_ref();
     }
     unsafe fn raw_wake(data: *const ()) {
-        let this = unsafe { &*(data as *const Self) };
+        let this = unsafe { &*data.cast::<Self>() };
         this.wake();
     }
     fn wake_by_ref(&self) {
-        self.inner.inner_waker.wake_by_ref()
+        self.inner.inner_waker.wake_by_ref();
     }
     unsafe fn raw_wake_by_ref(data: *const ()) {
-        let this = unsafe { &*(data as *const Self) };
+        let this = unsafe { &*data.cast::<Self>() };
         this.wake_by_ref();
     }
     unsafe fn raw_drop(data: *const ()) {
