@@ -6,9 +6,9 @@ timeout elapsed at:
 trace 0:
 span trace:
    0: timeout_tracing::deadline
-             at src/lib.rs:55
+             at src/lib.rs:[NNN]
    1: timeout_tracing::tests::nested_tracing_timeout::do_f
-             at src/tests/nested_tracing_timeout.rs:31
+             at src/tests/nested_tracing_timeout.rs:[NNN]
 stack trace:
    0: timeout_tracing::trace::StackAndSpanTrace::capture
              at ./src/trace.rs:[NNN]:[NNN]
@@ -131,9 +131,9 @@ stack trace:
 trace 1:
 span trace:
    0: timeout_tracing::tests::nested_tracing_timeout::do_g
-             at src/tests/nested_tracing_timeout.rs:36
+             at src/tests/nested_tracing_timeout.rs:[NNN]
    1: timeout_tracing::tests::nested_tracing_timeout::do_f
-             at src/tests/nested_tracing_timeout.rs:31
+             at src/tests/nested_tracing_timeout.rs:[NNN]
 stack trace:
    0: timeout_tracing::trace::StackAndSpanTrace::capture
              at ./src/trace.rs:[NNN]:[NNN]

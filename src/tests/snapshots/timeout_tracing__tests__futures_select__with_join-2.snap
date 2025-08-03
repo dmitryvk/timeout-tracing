@@ -6,9 +6,9 @@ timeout elapsed at:
 trace 0:
 span trace:
    0: timeout_tracing::tests::futures_select::do_sleep_a
-             at src/tests/futures_select.rs:38
+             at src/tests/futures_select.rs:[NNN]
    1: timeout_tracing::tests::futures_select::do_sleep
-             at src/tests/futures_select.rs:30
+             at src/tests/futures_select.rs:[NNN]
 stack trace:
    0: timeout_tracing::trace::StackAndSpanTrace::capture
              at ./src/trace.rs:[NNN]:[NNN]
@@ -147,9 +147,9 @@ stack trace:
 trace 1:
 span trace:
    0: timeout_tracing::tests::futures_select::do_sleep_b
-             at src/tests/futures_select.rs:44
+             at src/tests/futures_select.rs:[NNN]
    1: timeout_tracing::tests::futures_select::do_sleep
-             at src/tests/futures_select.rs:30
+             at src/tests/futures_select.rs:[NNN]
 stack trace:
    0: timeout_tracing::trace::StackAndSpanTrace::capture
              at ./src/trace.rs:[NNN]:[NNN]

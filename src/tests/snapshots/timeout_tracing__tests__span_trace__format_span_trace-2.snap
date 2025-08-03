@@ -5,11 +5,11 @@ expression: err
 timeout elapsed at:
 trace 0:
    0: timeout_tracing::tests::span_trace::do_sleep_a
-             at src/tests/span_trace.rs:37
+             at src/tests/span_trace.rs:[NNN]
    1: timeout_tracing::tests::span_trace::do_sleep
-             at src/tests/span_trace.rs:31
+             at src/tests/span_trace.rs:[NNN]
 trace 1:
    0: timeout_tracing::tests::span_trace::do_sleep_b
-             at src/tests/span_trace.rs:43
+             at src/tests/span_trace.rs:[NNN]
    1: timeout_tracing::tests::span_trace::do_sleep
-             at src/tests/span_trace.rs:31
+             at src/tests/span_trace.rs:[NNN]

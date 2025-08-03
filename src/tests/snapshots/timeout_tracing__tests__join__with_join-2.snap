@@ -6,9 +6,9 @@ timeout elapsed at:
 trace 0:
 span trace:
    0: timeout_tracing::tests::join::do_sleep_a
-             at src/tests/join.rs:35
+             at src/tests/join.rs:[NNN]
    1: timeout_tracing::tests::join::do_sleep
-             at src/tests/join.rs:29
+             at src/tests/join.rs:[NNN]
 stack trace:
    0: timeout_tracing::trace::StackAndSpanTrace::capture
              at ./src/trace.rs:[NNN]:[NNN]
@@ -140,9 +140,9 @@ stack trace:
 trace 1:
 span trace:
    0: timeout_tracing::tests::join::do_sleep_b
-             at src/tests/join.rs:41
+             at src/tests/join.rs:[NNN]
    1: timeout_tracing::tests::join::do_sleep
-             at src/tests/join.rs:29
+             at src/tests/join.rs:[NNN]
 stack trace:
    0: timeout_tracing::trace::StackAndSpanTrace::capture
              at ./src/trace.rs:[NNN]:[NNN]

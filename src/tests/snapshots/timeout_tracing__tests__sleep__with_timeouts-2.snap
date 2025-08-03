@@ -6,9 +6,9 @@ timeout elapsed at:
 trace 0:
 span trace:
    0: timeout_tracing::tests::sleep::do_sleep_3
-             at src/tests/sleep.rs:49
+             at src/tests/sleep.rs:[NNN]
    1: timeout_tracing::tests::sleep::do_sleep
-             at src/tests/sleep.rs:28
+             at src/tests/sleep.rs:[NNN]
 stack trace:
    0: timeout_tracing::trace::StackAndSpanTrace::capture
              at ./src/trace.rs:[NNN]:[NNN]
