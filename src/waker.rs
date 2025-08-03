@@ -5,14 +5,14 @@ use std::{
 
 use crate::trace::CaptureTrace;
 
-pub struct TracingTimeoutWakerInner<C: CaptureTrace + Send + 'static> {
+pub(crate) struct TracingTimeoutWakerInner<C: CaptureTrace + Send + 'static> {
     active_traces: Mutex<Vec<Option<C::Trace>>>,
     capture: C,
     inner_waker: Waker,
 }
 
 impl<C: CaptureTrace + Send + 'static> TracingTimeoutWakerInner<C> {
-    pub fn new(capture: C, inner_waker: Waker) -> Arc<Self> {
+    pub(crate) fn new(capture: C, inner_waker: Waker) -> Arc<Self> {
         Arc::new(Self {
             active_traces: Mutex::new(Vec::with_capacity(4)),
             capture,
@@ -20,7 +20,7 @@ impl<C: CaptureTrace + Send + 'static> TracingTimeoutWakerInner<C> {
         })
     }
 
-    pub fn traces(&self) -> Vec<C::Trace> {
+    pub(crate) fn traces(&self) -> Vec<C::Trace> {
         std::mem::take(&mut *self.active_traces.lock().unwrap())
             .into_iter()
             .flatten()
@@ -28,7 +28,7 @@ impl<C: CaptureTrace + Send + 'static> TracingTimeoutWakerInner<C> {
     }
 }
 
-pub struct TracingTimeoutWaker<C: CaptureTrace + Send + 'static> {
+pub(crate) struct TracingTimeoutWaker<C: CaptureTrace + Send + 'static> {
     inner: Arc<TracingTimeoutWakerInner<C>>,
     idx: Option<usize>,
 }
@@ -38,6 +38,11 @@ where
     C: CaptureTrace + Send + 'static,
 {
     fn vtable() -> &'static RawWakerVTable {
+        // SAFETY:
+        // 1. TracingTimeoutWaker is a raw pointer to `Box::into_raw`
+        // 2. Each raw pointer is a valid pointer to Box:
+        //    - it is unique
+        //    - it has valid lifetime
         &RawWakerVTable::new(
             Self::raw_clone,
             Self::raw_wake,
@@ -46,15 +51,17 @@ where
         )
     }
 
-    pub fn new(inner: Arc<TracingTimeoutWakerInner<C>>) -> Box<Self> {
-        Box::new(Self { inner, idx: None })
-    }
-
-    pub fn as_std_waker(self: Box<Self>) -> Waker {
-        let data = Box::into_raw(self);
+    pub(crate) fn new_std_waker(inner: Arc<TracingTimeoutWakerInner<C>>) -> Waker {
+        let data = Box::into_raw(Box::new(Self { inner, idx: None }));
+        // SAFETY: (see comment for `vtable` function)
+        // `data` is a valid pointer to Box as it was just obtained from `Box::into_raw`
         unsafe { Waker::new(data as *const (), Self::vtable()) }
     }
 
+    #[allow(
+        clippy::unnecessary_box_returns,
+        reason = "Box<Self> is necessary for correctness"
+    )]
     fn clone(&self) -> Box<Self> {
         let trace = self.inner.capture.capture();
         let idx = {
@@ -70,26 +77,38 @@ where
     }
 
     unsafe fn raw_clone(data: *const ()) -> RawWaker {
-        let this = unsafe { &*(data as *const Self) };
+        // SAFETY: (see comment for `vtable` function)
+        // - `data` is a valid pointer to Box due to prerequisites of vtable
+        // - every raw Box pointer is a pointer to stored struct
+        let this = unsafe { &*data.cast::<Self>() };
         let cloned = this.clone();
         RawWaker::new(Box::into_raw(cloned) as *const (), Self::vtable())
     }
 
     fn wake(&self) {
-        self.inner.inner_waker.wake_by_ref()
+        self.inner.inner_waker.wake_by_ref();
     }
     unsafe fn raw_wake(data: *const ()) {
-        let this = unsafe { &*(data as *const Self) };
+        // SAFETY: (see comment for `vtable` function)
+        // - `data` is a valid pointer to Box due to prerequisites of vtable
+        // - every raw Box pointer is a pointer to stored struct
+        let this = unsafe { &*data.cast::<Self>() };
         this.wake();
     }
     fn wake_by_ref(&self) {
-        self.inner.inner_waker.wake_by_ref()
+        self.inner.inner_waker.wake_by_ref();
     }
     unsafe fn raw_wake_by_ref(data: *const ()) {
-        let this = unsafe { &*(data as *const Self) };
+        // SAFETY: (see comment for `vtable` function)
+        // - `data` is a valid pointer to Box due to prerequisites of vtable
+        // - every raw Box pointer is a pointer to stored struct
+        let this = unsafe { &*data.cast::<Self>() };
         this.wake_by_ref();
     }
     unsafe fn raw_drop(data: *const ()) {
+        // SAFETY: (see comment for `vtable` function)
+        // - `data` is a valid pointer to Box due to prerequisites of vtable
+        // - the argument of `raw_drop` is a unique reference
         let this = unsafe { Box::<Self>::from_raw(data as *mut Self) };
         drop(this);
     }

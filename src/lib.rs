@@ -118,7 +118,7 @@ where
                     }));
                 };
                 let waker_inner = TracingTimeoutWakerInner::new(capture, cx.waker().clone());
-                let waker = TracingTimeoutWaker::new(waker_inner.clone()).as_std_waker();
+                let waker = TracingTimeoutWaker::new_std_waker(waker_inner.clone());
                 let mut cx2 = Context::from_waker(&waker);
                 match this.inner.poll(&mut cx2) {
                     Poll::Pending => {}

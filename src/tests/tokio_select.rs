@@ -30,8 +30,8 @@ async fn with_select() {
 #[instrument]
 async fn do_sleep() {
     tokio::select! {
-        _ = do_sleep_a().fuse() => {},
-        _ = do_sleep_b().fuse() => {}
+        () = do_sleep_a().fuse() => {},
+        () = do_sleep_b().fuse() => {}
     }
 }
 

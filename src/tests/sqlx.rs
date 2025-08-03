@@ -10,7 +10,7 @@ use crate::{
 };
 
 #[tokio::test]
-#[ignore]
+#[ignore = "need to run docker-compose.deps.yml in CI"]
 #[serial]
 async fn with_sqlx() {
     let result = run_with_tracing(Duration::from_millis(1000), do_sqlx()).await;
