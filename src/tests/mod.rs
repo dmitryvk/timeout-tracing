@@ -37,6 +37,9 @@ where
 
     let _guard = tracing::subscriber::set_default(subscriber);
     let old_val = std::env::var_os("RUST_BACKTRACE");
+    // SAFETY:
+    // - this is a testing code
+    // - all tests are serial in this crate
     unsafe { std::env::set_var("RUST_BACKTRACE", "1") };
 
     info!("before call");
@@ -44,10 +47,20 @@ where
     info!("after call");
 
     match old_val {
-        Some(old_val) => unsafe { std::env::set_var("RUST_BACKTRACE", old_val) },
-        None => unsafe {
-            std::env::remove_var("RUST_BACKTRACE");
-        },
+        Some(old_val) => {
+            // SAFETY:
+            // - this is a testing code
+            // - all tests are serial in this crate
+            unsafe { std::env::set_var("RUST_BACKTRACE", old_val) }
+        }
+        None => {
+            // SAFETY:
+            // - this is a testing code
+            // - all tests are serial in this crate
+            unsafe {
+                std::env::remove_var("RUST_BACKTRACE");
+            }
+        }
     }
 
     match &result {
@@ -69,18 +82,18 @@ where
 
 fn insta_trace_filters() -> Vec<(&'static str, &'static str)> {
     vec![
-        (r#".*/rustlib/src/rust/.*\n"#, r#""#),
-        (r#".*/rustc/[0-9a-z]+/.*\n"#, r#""#),
+        (r".*/rustlib/src/rust/.*\n", r""),
+        (r".*/rustc/[0-9a-z]+/.*\n", r""),
         (
             r#""[^"]*/index.crates.io-[0-9a-z]*/([^/]+)-[^-/]+/"#,
             r#""[crates]/$1-[ver]/"#,
         ),
         (
-            r#"at .*/index.crates.io-[0-9a-z]*/([^/]+)-[^-/]+/"#,
-            r#"at [crates]/$1-[ver]/"#,
+            r"at .*/index.crates.io-[0-9a-z]*/([^/]+)-[^-/]+/",
+            r"at [crates]/$1-[ver]/",
         ),
-        (r#"line: [0-9]+"#, r#"line: [NNN]"#),
-        (r#"\.rs:[0-9]+:[0-9]+"#, r#".rs:[NNN]:[NNN]"#),
-        (r#"\.rs:[0-9]+"#, r#".rs:[NNN]"#),
+        (r"line: [0-9]+", r"line: [NNN]"),
+        (r"\.rs:[0-9]+:[0-9]+", r".rs:[NNN]:[NNN]"),
+        (r"\.rs:[0-9]+", r".rs:[NNN]"),
     ]
 }

@@ -9,7 +9,7 @@ use crate::{
 };
 
 #[tokio::test]
-#[ignore] // TODO: run a test server in docker-compose.deps.yml in CI
+#[ignore = "fails in CI with some different error"] // TODO: run a test server in docker-compose.deps.yml in CI
 #[serial]
 async fn with_reqwest() {
     let result = run_with_tracing(Duration::from_millis(100), do_reqwest()).await;

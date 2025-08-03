@@ -30,8 +30,8 @@ async fn with_join() {
 #[instrument]
 async fn do_sleep() {
     futures::select! {
-        _ = do_sleep_a().fuse() => {},
-        _ = do_sleep_b().fuse() => {}
+        () = do_sleep_a().fuse() => {},
+        () = do_sleep_b().fuse() => {}
     }
 }
 

@@ -18,8 +18,7 @@ async fn format_span_trace() {
 
     assert!(matches!(result, Err(TimeoutElapsed { .. })));
     let mut err = result.err().unwrap();
-    err.active_traces
-        .sort_by_cached_key(|trace| trace.to_string());
+    err.active_traces.sort_by_cached_key(ToString::to_string);
     insta::with_settings!({
         filters => insta_trace_filters()
     }, {
