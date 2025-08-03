@@ -8,7 +8,7 @@ use crate::{
     TimeoutElapsed,
     tests::{insta_trace_filters, run_with_tracing},
     timeout,
-    trace::DefaultTraceCapturer,
+    trace::CaptureSpanAndStackTrace,
 };
 
 #[tokio::test]
@@ -30,7 +30,7 @@ async fn with_timeouts() {
 
 #[instrument]
 async fn do_f() {
-    _ = timeout(Duration::from_secs(1), DefaultTraceCapturer, do_g()).await;
+    _ = timeout(Duration::from_secs(1), CaptureSpanAndStackTrace, do_g()).await;
 }
 
 #[instrument]

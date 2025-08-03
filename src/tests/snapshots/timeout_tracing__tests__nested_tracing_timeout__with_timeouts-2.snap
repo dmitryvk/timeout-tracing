@@ -6,13 +6,13 @@ timeout elapsed at:
 trace 0:
 span trace:
    0: timeout_tracing::deadline
-             at src/lib.rs:52
+             at src/lib.rs:55
    1: timeout_tracing::tests::nested_tracing_timeout::do_f
              at src/tests/nested_tracing_timeout.rs:31
 stack trace:
    0: timeout_tracing::trace::StackAndSpanTrace::capture
              at ./src/trace.rs:[NNN]:[NNN]
-   1: <timeout_tracing::trace::DefaultTraceCapturer as timeout_tracing::trace::CaptureTrace>::capture
+   1: <timeout_tracing::trace::CaptureSpanAndStackTrace as timeout_tracing::trace::CaptureTrace>::capture
              at ./src/trace.rs:[NNN]:[NNN]
    2: timeout_tracing::waker::TracingTimeoutWaker<C>::clone
              at ./src/waker.rs:[NNN]:[NNN]
@@ -137,7 +137,7 @@ span trace:
 stack trace:
    0: timeout_tracing::trace::StackAndSpanTrace::capture
              at ./src/trace.rs:[NNN]:[NNN]
-   1: <timeout_tracing::trace::DefaultTraceCapturer as timeout_tracing::trace::CaptureTrace>::capture
+   1: <timeout_tracing::trace::CaptureSpanAndStackTrace as timeout_tracing::trace::CaptureTrace>::capture
              at ./src/trace.rs:[NNN]:[NNN]
    2: timeout_tracing::waker::TracingTimeoutWaker<C>::clone
              at ./src/waker.rs:[NNN]:[NNN]

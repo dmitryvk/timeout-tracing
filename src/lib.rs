@@ -13,7 +13,10 @@ use tracing::{Level, span};
 
 use crate::waker::{TracingTimeoutWaker, TracingTimeoutWakerInner};
 
-pub use crate::{trace::CaptureTrace, trace::DefaultTraceCapturer, trace::StackAndSpanTrace};
+pub use crate::{
+    trace::CaptureSpanAndStackTrace, trace::CaptureSpanTrace, trace::CaptureTrace,
+    trace::StackAndSpanTrace,
+};
 
 #[cfg(test)]
 mod tests;

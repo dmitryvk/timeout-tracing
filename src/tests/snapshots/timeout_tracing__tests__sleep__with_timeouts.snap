@@ -7,7 +7,7 @@ TimeoutElapsed {
         StackAndSpanTrace {
             stack_trace: Backtrace [
                 { fn: "timeout_tracing::trace::StackAndSpanTrace::capture", file: "./src/trace.rs", line: [NNN] },
-                { fn: "<timeout_tracing::trace::DefaultTraceCapturer as timeout_tracing::trace::CaptureTrace>::capture", file: "./src/trace.rs", line: [NNN] },
+                { fn: "<timeout_tracing::trace::CaptureSpanAndStackTrace as timeout_tracing::trace::CaptureTrace>::capture", file: "./src/trace.rs", line: [NNN] },
                 { fn: "timeout_tracing::waker::TracingTimeoutWaker<C>::clone", file: "./src/waker.rs", line: [NNN] },
                 { fn: "timeout_tracing::waker::TracingTimeoutWaker<C>::raw_clone", file: "./src/waker.rs", line: [NNN] },
                 { fn: "<&core::task::wake::Waker as tokio::sync::task::atomic_waker::WakerRef>::into_waker", file: "[crates]/tokio-[ver]/src/sync/task/atomic_waker.rs", line: [NNN] },

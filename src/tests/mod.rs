@@ -7,7 +7,7 @@ use tracing_subscriber::layer::SubscriberExt;
 
 use crate::{
     TimeoutElapsed,
-    trace::{DefaultTraceCapturer, StackAndSpanTrace},
+    trace::{CaptureSpanAndStackTrace, StackAndSpanTrace},
 };
 
 mod custom_future;
@@ -18,6 +18,7 @@ mod join;
 mod nested_tracing_timeout;
 mod reqwest;
 mod sleep;
+mod span_trace;
 mod sqlx;
 mod tokio_select;
 
@@ -39,7 +40,7 @@ where
     unsafe { std::env::set_var("RUST_BACKTRACE", "1") };
 
     info!("before call");
-    let result = crate::timeout(duration, DefaultTraceCapturer, f).await;
+    let result = crate::timeout(duration, CaptureSpanAndStackTrace, f).await;
     info!("after call");
 
     match old_val {
