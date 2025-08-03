@@ -2,11 +2,16 @@ use std::{backtrace::Backtrace, fmt::Display};
 
 use tracing_error::SpanTrace;
 
+/// A trait to support custom implementations of traces
 pub trait CaptureTrace {
+    /// Representation for captured trace
     type Trace;
+    /// Capture trace at the current moment.
     fn capture(&self) -> Self::Trace;
 }
 
+/// Implementation of [`CaptureTrace`] that captures span trace using [`tracing_error::SpanTrace`].
+/// [`tracing`] must be initialized with [`tracing_error::ErrorLayer`] for the trace to be captured successfully.
 pub struct CaptureSpanTrace;
 
 impl CaptureTrace for CaptureSpanTrace {
@@ -17,6 +22,10 @@ impl CaptureTrace for CaptureSpanTrace {
     }
 }
 
+/// Implementation of [`CaptureTrace`] that captures both a span trace using [`tracing_error::SpanTrace`]
+/// and a stack trace.
+/// [`tracing`] must be initialized with [`tracing_error::ErrorLayer`] for the span trace to be captured successfully
+/// and `RUST_BACKTRACE` environment variable must be set for the stack trace to be captured.
 pub struct CaptureSpanAndStackTrace;
 
 impl CaptureTrace for CaptureSpanAndStackTrace {

@@ -23,6 +23,58 @@ mod tests;
 mod trace;
 mod waker;
 
+/// Drive the future `fut` to completion, while limiting its run time to `duration`.
+/// If `fut` fails to finish within `furation`, returns span traces for all active
+/// await points within `fut`.
+/// Use `capture` to specify which kind of trace should be captured.
+///
+/// # Examples
+/// ```rust
+/// # use std::time::Duration;
+/// # use tokio::time::sleep;
+/// # use timeout_tracing::{CaptureSpanTrace, timeout};
+/// # use tracing::instrument;
+/// # use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
+/// # tokio::runtime::Runtime::new()
+/// #     .unwrap()
+/// #     .block_on(async {
+/// tracing_subscriber::registry()
+///     .with(tracing_error::ErrorLayer::default())
+///     .init();
+///
+/// let result = timeout(Duration::from_secs(1), CaptureSpanTrace, long_computation()).await;
+/// assert_eq!(filter_span_trace(result.err().unwrap().to_string()), "timeout elapsed at:
+/// trace 0:
+///    0: example::step_2
+///              at example.rs:123
+///    1: example::long_computation
+///              at example.rs:123
+/// ");
+///
+/// #[instrument]
+/// async fn long_computation() {
+///     step_1().await;
+///     step_2().await;
+/// }
+/// #[instrument]
+/// async fn step_1() {
+///     sleep(Duration::from_millis(10)).await;
+/// }
+/// #[instrument]
+/// async fn step_2() {
+///     sleep(Duration::from_secs(2)).await;
+/// }
+/// # fn filter_span_trace(trace: String) -> String {
+/// #     use regex::Regex;
+/// #
+/// #     let re = Regex::new(r"at .*\.rs:([0-9_]+)").unwrap();
+/// #     let trace = re.replace_all(&trace, "at example.rs:123").to_string();
+/// #     let re = Regex::new(r"[a-z0-9:_]+::([a-z]+)").unwrap();
+/// #     let trace = re.replace_all(&trace, "example::$1").to_string();
+/// #     trace
+/// # }
+/// # });
+/// ```
 pub fn timeout<C, Fut>(duration: Duration, capture: C, fut: Fut) -> TimeoutFuture<C, Fut> {
     let deadline = tokio::time::sleep(duration);
     TimeoutFuture {
