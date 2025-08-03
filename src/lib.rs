@@ -1,6 +1,8 @@
 #![doc = include_str!("../README.md")]
 
 use std::{
+    error::Error,
+    fmt::Display,
     pin::Pin,
     task::{Context, Poll},
     time::Duration,
@@ -84,3 +86,19 @@ where
 pub struct TimeoutElapsed<Trace> {
     pub active_traces: Vec<Trace>,
 }
+
+impl<Trace: Display> Display for TimeoutElapsed<Trace> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        if self.active_traces.is_empty() {
+            f.write_str("timeout elapsed")?;
+        } else {
+            f.write_str("timeout elapsed at:\n")?;
+            for (idx, trace) in self.active_traces.iter().enumerate() {
+                writeln!(f, "trace {idx}:\n{trace}")?;
+            }
+        }
+        Ok(())
+    }
+}
+
+impl<Trace> Error for TimeoutElapsed<Trace> where Trace: std::fmt::Debug + std::fmt::Display {}

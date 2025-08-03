@@ -17,29 +17,14 @@ async fn with_timeouts() {
     let result = run_with_tracing(Duration::from_millis(100), do_f()).await;
 
     assert!(matches!(result, Err(TimeoutElapsed { .. })));
-    assert_eq!(result.as_ref().err().unwrap().active_traces.len(), 2);
-    assert!(
-        result
-            .as_ref()
-            .err()
-            .unwrap()
-            .active_traces
-            .iter()
-            .all(|e| e.stack_trace.to_string().contains("do_f"))
-    );
-    assert!(
-        result
-            .as_ref()
-            .err()
-            .unwrap()
-            .active_traces
-            .iter()
-            .any(|e| e.stack_trace.to_string().contains("do_g"))
-    );
+    let mut err = result.err().unwrap();
+    err.active_traces
+        .sort_by_cached_key(|trace| trace.span_trace.to_string());
     insta::with_settings!({
         filters => insta_trace_filters()
     }, {
-        insta::assert_debug_snapshot!(result);
+        insta::assert_debug_snapshot!(err);
+        insta::assert_snapshot!(err);
     });
 }
 

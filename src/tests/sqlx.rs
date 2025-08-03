@@ -16,29 +16,14 @@ async fn with_sqlx() {
     let result = run_with_tracing(Duration::from_millis(1000), do_sqlx()).await;
 
     assert!(matches!(result, Err(TimeoutElapsed { .. })));
-    let traces = &result.as_ref().err().unwrap().active_traces;
-    for (trace_idx, trace) in traces.iter().enumerate() {
-        assert!(
-            trace.span_trace.to_string().contains("exec_query"),
-            "trace #{trace_idx}"
-        );
-        assert!(
-            trace.stack_trace.to_string().contains("exec_query"),
-            "trace #{trace_idx}"
-        );
-    }
-    assert!(
-        traces
-            .iter()
-            .any(|e| e.stack_trace.to_string().contains("exec_query")
-                && e.span_trace.to_string().contains("pg_sleep(2)")
-                && e.span_trace.to_string().contains("exec_query")),
-        "no trace contains exec_query"
-    );
+    let mut err = result.err().unwrap();
+    err.active_traces
+        .sort_by_cached_key(|trace| trace.span_trace.to_string());
     insta::with_settings!({
         filters => insta_trace_filters()
     }, {
-        insta::assert_debug_snapshot!(result);
+        insta::assert_debug_snapshot!(err);
+        insta::assert_snapshot!(err);
     });
 }
 
