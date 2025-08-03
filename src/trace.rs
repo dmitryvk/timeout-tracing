@@ -7,9 +7,19 @@ pub trait CaptureTrace {
     fn capture(&self) -> Self::Trace;
 }
 
-pub struct DefaultTraceCapturer;
+pub struct CaptureSpanTrace;
 
-impl CaptureTrace for DefaultTraceCapturer {
+impl CaptureTrace for CaptureSpanTrace {
+    type Trace = SpanTrace;
+
+    fn capture(&self) -> Self::Trace {
+        SpanTrace::capture()
+    }
+}
+
+pub struct CaptureSpanAndStackTrace;
+
+impl CaptureTrace for CaptureSpanAndStackTrace {
     type Trace = StackAndSpanTrace;
 
     fn capture(&self) -> Self::Trace {

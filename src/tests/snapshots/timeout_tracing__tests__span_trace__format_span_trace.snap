@@ -1,0 +1,16 @@
+---
+source: src/tests/span_trace.rs
+expression: err
+---
+TimeoutElapsed {
+    active_traces: [
+        SpanTrace [
+            { target: "timeout_tracing::tests::span_trace", name: "do_sleep_a", file: "src/tests/span_trace.rs", line: [NNN] },
+            { target: "timeout_tracing::tests::span_trace", name: "do_sleep", file: "src/tests/span_trace.rs", line: [NNN] },
+        ],
+        SpanTrace [
+            { target: "timeout_tracing::tests::span_trace", name: "do_sleep_b", file: "src/tests/span_trace.rs", line: [NNN] },
+            { target: "timeout_tracing::tests::span_trace", name: "do_sleep", file: "src/tests/span_trace.rs", line: [NNN] },
+        ],
+    ],
+}
