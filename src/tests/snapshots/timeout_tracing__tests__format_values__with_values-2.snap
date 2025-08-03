@@ -7,9 +7,9 @@ trace 0:
 span trace:
    0: timeout_tracing::tests::format_values::do_sleep_inner
            with n=123
-             at src/tests/format_values.rs:34
+             at src/tests/format_values.rs:[NNN]
    1: timeout_tracing::tests::format_values::do_sleep
-             at src/tests/format_values.rs:29
+             at src/tests/format_values.rs:[NNN]
 stack trace:
    0: timeout_tracing::trace::StackAndSpanTrace::capture
              at ./src/trace.rs:[NNN]:[NNN]

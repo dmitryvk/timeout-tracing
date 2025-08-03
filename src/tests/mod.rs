@@ -81,5 +81,6 @@ fn insta_trace_filters() -> Vec<(&'static str, &'static str)> {
         ),
         (r#"line: [0-9]+"#, r#"line: [NNN]"#),
         (r#"\.rs:[0-9]+:[0-9]+"#, r#".rs:[NNN]:[NNN]"#),
+        (r#"\.rs:[0-9]+"#, r#".rs:[NNN]"#),
     ]
 }

@@ -6,7 +6,7 @@ timeout elapsed at:
 trace 0:
 span trace:
    0: timeout_tracing::tests::futures_unordered::do_unordered
-             at src/tests/futures_unordered.rs:31
+             at src/tests/futures_unordered.rs:[NNN]
 stack trace:
    0: timeout_tracing::trace::StackAndSpanTrace::capture
              at ./src/trace.rs:[NNN]:[NNN]
