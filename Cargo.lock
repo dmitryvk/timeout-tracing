@@ -2127,6 +2127,7 @@ dependencies = [
  "insta",
  "itertools",
  "pin-project-lite",
+ "regex",
  "reqwest",
  "serial_test",
  "sqlx",

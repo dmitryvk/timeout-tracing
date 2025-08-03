@@ -16,6 +16,7 @@ futures = "0.3.31"
 hyper = { version = "1.1.0" }
 insta = { version = "1.43.1", features = ["filters"] }
 itertools = "0.14.0"
+regex = "1.11.1"
 reqwest = { version = "0.12.22", features = ["hickory-dns"] }
 serial_test = "3.2.0"
 sqlx = { version = "0.8.6", features = ["postgres", "runtime-tokio"] }

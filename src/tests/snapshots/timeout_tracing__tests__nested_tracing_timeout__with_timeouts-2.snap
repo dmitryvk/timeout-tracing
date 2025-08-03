@@ -6,7 +6,7 @@ timeout elapsed at:
 trace 0:
 span trace:
    0: timeout_tracing::deadline
-             at src/lib.rs:55
+             at src/lib.rs:107
    1: timeout_tracing::tests::nested_tracing_timeout::do_f
              at src/tests/nested_tracing_timeout.rs:31
 stack trace:
